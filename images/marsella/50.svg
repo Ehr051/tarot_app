@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560" width="400" height="560">
+  <rect width="400" height="560" fill="#F5F0E0" rx="12"/>
+  <rect x="8" y="8" width="384" height="544" fill="none" stroke="#8B6914" stroke-width="2.5" rx="10"/>
+  <rect x="18" y="18" width="364" height="524" fill="none" stroke="#8B6914" stroke-width="0.8" rx="6"/>
+  
+  <text x="200.0" y="42" text-anchor="middle" font-family="serif" font-size="26" font-weight="bold" fill="#D4A017">I</text>
+  
+  <g fill="#D4A017" stroke="#8B6914">
+    
+    <g transform="translate(200.0,280.0) rotate(0)">
+      <rect x="-1.75" y="-15.75" width="3.5" height="31.5" rx="1.05" fill="inherit" stroke="inherit" stroke-width="1"/>
+      <ellipse cx="-5.25" cy="-8.75" rx="4.2" ry="2.1" fill="inherit" stroke="inherit" stroke-width="0.8" transform="rotate(-30, -5.25, -8.75)"/>
+      <ellipse cx="5.25" cy="-1.75" rx="4.2" ry="2.1" fill="inherit" stroke="inherit" stroke-width="0.8" transform="rotate(30, 5.25, -1.75)"/>
+      <ellipse cx="-4.2" cy="5.25" rx="3.5" ry="1.75" fill="inherit" stroke="inherit" stroke-width="0.8" transform="rotate(-20, -4.2, 5.25)"/>
+    </g>
+  </g>
+  
+  <g transform="translate(200.0,532) rotate(180)">
+    <text x="0" y="0" text-anchor="middle" font-family="serif" font-size="26" font-weight="bold" fill="#D4A017">I</text>
+  </g>
+</svg>

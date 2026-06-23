@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560" width="400" height="560">
+  <rect width="400" height="560" fill="#F5F0E0" rx="12"/>
+  <rect x="8" y="8" width="384" height="544" fill="none" stroke="#8B0000" stroke-width="2.5" rx="10"/>
+  <rect x="18" y="18" width="364" height="524" fill="none" stroke="#8B0000" stroke-width="0.8" rx="6"/>
+  
+  <text x="200.0" y="42" text-anchor="middle" font-family="serif" font-size="26" font-weight="bold" fill="#C41E3A">IV</text>
+  
+  <g fill="#C41E3A" stroke="#8B0000">
+    
+    <g transform="translate(120.0,168.0) rotate(0)">
+      <path d="M0,-14.0 C-11.200000000000001,-8.4 -9.799999999999999,5.6000000000000005 0,9.799999999999999 C9.799999999999999,5.6000000000000005 11.200000000000001,-8.4 0,-14.0Z" 
+            fill="inherit" stroke="inherit" stroke-width="1.5"/>
+      <ellipse cx="0" cy="9.799999999999999" rx="7.0" ry="2.24" fill="inherit" stroke="inherit" stroke-width="1"/>
+      <rect x="-1.68" y="11.76" width="3.36" height="4.2" fill="inherit" stroke="inherit" stroke-width="0.8"/>
+      <ellipse cx="0" cy="16.8" rx="5.04" ry="1.68" fill="inherit" stroke="inherit" stroke-width="0.8"/>
+      <circle cx="0" cy="-8.4" r="2.24" fill="none" stroke="inherit" stroke-width="0.8"/>
+    </g>
+    <g transform="translate(280.0,168.0) rotate(0)">
+      <path d="M0,-14.0 C-11.200000000000001,-8.4 -9.799999999999999,5.6000000000000005 0,9.799999999999999 C9.799999999999999,5.6000000000000005 11.200000000000001,-8.4 0,-14.0Z" 
+            fill="inherit" stroke="inherit" stroke-width="1.5"/>
+      <ellipse cx="0" cy="9.799999999999999" rx="7.0" ry="2.24" fill="inherit" stroke="inherit" stroke-width="1"/>
+      <rect x="-1.68" y="11.76" width="3.36" height="4.2" fill="inherit" stroke="inherit" stroke-width="0.8"/>
+      <ellipse cx="0" cy="16.8" rx="5.04" ry="1.68" fill="inherit" stroke="inherit" stroke-width="0.8"/>
+      <circle cx="0" cy="-8.4" r="2.24" fill="none" stroke="inherit" stroke-width="0.8"/>
+    </g>
+    <g transform="translate(120.0,392.0) rotate(0)">
+      <path d="M0,-14.0 C-11.200000000000001,-8.4 -9.799999999999999,5.6000000000000005 0,9.799999999999999 C9.799999999999999,5.6000000000000005 11.200000000000001,-8.4 0,-14.0Z" 
+            fill="inherit" stroke="inherit" stroke-width="1.5"/>
+      <ellipse cx="0" cy="9.799999999999999" rx="7.0" ry="2.24" fill="inherit" stroke="inherit" stroke-width="1"/>
+      <rect x="-1.68" y="11.76" width="3.36" height="4.2" fill="inherit" stroke="inherit" stroke-width="0.8"/>
+      <ellipse cx="0" cy="16.8" rx="5.04" ry="1.68" fill="inherit" stroke="inherit" stroke-width="0.8"/>
+      <circle cx="0" cy="-8.4" r="2.24" fill="none" stroke="inherit" stroke-width="0.8"/>
+    </g>
+    <g transform="translate(280.0,392.0) rotate(0)">
+      <path d="M0,-14.0 C-11.200000000000001,-8.4 -9.799999999999999,5.6000000000000005 0,9.799999999999999 C9.799999999999999,5.6000000000000005 11.200000000000001,-8.4 0,-14.0Z" 
+            fill="inherit" stroke="inherit" stroke-width="1.5"/>
+      <ellipse cx="0" cy="9.799999999999999" rx="7.0" ry="2.24" fill="inherit" stroke="inherit" stroke-width="1"/>
+      <rect x="-1.68" y="11.76" width="3.36" height="4.2" fill="inherit" stroke="inherit" stroke-width="0.8"/>
+      <ellipse cx="0" cy="16.8" rx="5.04" ry="1.68" fill="inherit" stroke="inherit" stroke-width="0.8"/>
+      <circle cx="0" cy="-8.4" r="2.24" fill="none" stroke="inherit" stroke-width="0.8"/>
+    </g>
+  </g>
+  
+  <g transform="translate(200.0,532) rotate(180)">
+    <text x="0" y="0" text-anchor="middle" font-family="serif" font-size="26" font-weight="bold" fill="#C41E3A">IV</text>
+  </g>
+</svg>

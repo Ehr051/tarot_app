@@ -1264,6 +1264,7 @@ function iniciarPractica(tipo) {
   document.getElementById('practice-title').textContent = getPracticeTitle(tipo);
   document.getElementById('practice-score').textContent = `0/${practiceState.total}`;
   document.getElementById('practice-next').textContent = 'Siguiente';
+  document.getElementById('practice-next').onclick = () => siguientePregunta();
   
   // Timer for quiz rápido
   const timerEl = document.getElementById('practice-timer');

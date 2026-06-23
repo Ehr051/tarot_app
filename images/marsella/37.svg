@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560" width="400" height="560">
+  <rect width="400" height="560" fill="#F5F0E0" rx="12"/>
+  <rect x="8" y="8" width="384" height="544" fill="none" stroke="#2C3E50" stroke-width="2.5" rx="10"/>
+  <rect x="18" y="18" width="364" height="524" fill="none" stroke="#2C3E50" stroke-width="0.8" rx="6"/>
+  
+  <text x="200.0" y="42" text-anchor="middle" font-family="serif" font-size="26" font-weight="bold" fill="#4A6FA5">II</text>
+  
+  <g fill="#4A6FA5" stroke="#2C3E50">
+    
+    <g transform="translate(200.0,168.0) rotate(0)">
+      <rect x="-1.4000000000000001" y="-15.75" width="2.8000000000000003" height="26.25" fill="inherit" stroke="inherit" stroke-width="1"/>
+      <rect x="-7.0" y="7.0" width="14.0" height="2.1" fill="inherit" stroke="inherit" stroke-width="1"/>
+      <polygon points="0,-17.5 -2.1,-14.0 2.1,-14.0" fill="inherit" stroke="inherit" stroke-width="0.8"/>
+      <circle cx="0" cy="8.05" r="1.4000000000000001" fill="inherit" stroke="inherit" stroke-width="0.5"/>
+    </g>
+    <g transform="translate(200.0,392.0) rotate(0)">
+      <rect x="-1.4000000000000001" y="-15.75" width="2.8000000000000003" height="26.25" fill="inherit" stroke="inherit" stroke-width="1"/>
+      <rect x="-7.0" y="7.0" width="14.0" height="2.1" fill="inherit" stroke="inherit" stroke-width="1"/>
+      <polygon points="0,-17.5 -2.1,-14.0 2.1,-14.0" fill="inherit" stroke="inherit" stroke-width="0.8"/>
+      <circle cx="0" cy="8.05" r="1.4000000000000001" fill="inherit" stroke="inherit" stroke-width="0.5"/>
+    </g>
+  </g>
+  
+  <g transform="translate(200.0,532) rotate(180)">
+    <text x="0" y="0" text-anchor="middle" font-family="serif" font-size="26" font-weight="bold" fill="#4A6FA5">II</text>
+  </g>
+</svg>

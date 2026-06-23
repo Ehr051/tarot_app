@@ -1,0 +1,401 @@
+
+==================================================
+🎴 Deck: Rider-Waite (78 cards)
+==================================================
+  🎨 The Fool... ✅ (107 KB)
+  🎨 The Magician... ✅ (100 KB)
+  🎨 The High Priestess... ✅ (101 KB)
+  🎨 The Empress... ✅ (109 KB)
+  🎨 The Emperor... ✅ (91 KB)
+  🎨 The Hierophant... ✅ (106 KB)
+  🎨 The Lovers... ✅ (109 KB)
+  🎨 The Chariot... ✅ (114 KB)
+  🎨 Strength... ✅ (100 KB)
+  🎨 The Hermit... ✅ (86 KB)
+  🎨 Wheel of Fortune... ✅ (132 KB)
+  🎨 Justice... ✅ (103 KB)
+  🎨 The Hanged Man... ✅ (95 KB)
+  🎨 Death... ✅ (111 KB)
+  🎨 Temperance... ✅ (109 KB)
+  🎨 The Devil... ✅ (91 KB)
+  🎨 The Tower... ✅ (106 KB)
+  🎨 The Star... ✅ (102 KB)
+  🎨 The Moon... ✅ (108 KB)
+  🎨 The Sun... ✅ (105 KB)
+  🎨 Judgement... ✅ (105 KB)
+  🎨 The World... ✅ (116 KB)
+  🎨 Ace of Cups... ✅ (113 KB)
+  🎨 Two of Cups... ✅ (105 KB)
+  🎨 Three of Cups... ✅ (116 KB)
+  🎨 Four of Cups... ✅ (105 KB)
+  🎨 Five of Cups... ✅ (100 KB)
+  🎨 Six of Cups... ✅ (100 KB)
+  🎨 Seven of Cups... ✅ (104 KB)
+  🎨 Eight of Cups... ✅ (98 KB)
+  🎨 Nine of Cups... ✅ (108 KB)
+  🎨 Ten of Cups... ✅ (108 KB)
+  🎨 Page of Cups... ✅ (108 KB)
+  🎨 Knight of Cups... ✅ (109 KB)
+  🎨 Queen of Cups... ✅ (95 KB)
+  🎨 King of Cups... ✅ (107 KB)
+  🎨 Ace of Swords... ✅ (99 KB)
+  🎨 Two of Swords... ✅ (98 KB)
+  🎨 Three of Swords... ✅ (112 KB)
+  🎨 Four of Swords... ✅ (112 KB)
+  🎨 Five of Swords... ✅ (105 KB)
+  🎨 Six of Swords... ✅ (107 KB)
+  🎨 Seven of Swords... ✅ (107 KB)
+  🎨 Eight of Swords... ✅ (107 KB)
+  🎨 Nine of Swords... ✅ (94 KB)
+  🎨 Ten of Swords... ✅ (105 KB)
+  🎨 Page of Swords... ✅ (102 KB)
+  🎨 Knight of Swords... ✅ (113 KB)
+  🎨 Queen of Swords... ✅ (109 KB)
+  🎨 King of Swords... ✅ (113 KB)
+  🎨 Ace of Wands... ✅ (98 KB)
+  🎨 Two of Wands... ✅ (106 KB)
+  🎨 Three of Wands... ✅ (107 KB)
+  🎨 Four of Wands... ✅ (116 KB)
+  🎨 Five of Wands... ✅ (112 KB)
+  🎨 Six of Wands... ✅ (114 KB)
+  🎨 Seven of Wands... ✅ (98 KB)
+  🎨 Eight of Wands... ✅ (107 KB)
+  🎨 Nine of Wands... ✅ (116 KB)
+  🎨 Ten of Wands... ✅ (116 KB)
+  🎨 Page of Wands... ✅ (106 KB)
+  🎨 Knight of Wands... ✅ (110 KB)
+  🎨 Queen of Wands... ✅ (111 KB)
+  🎨 King of Wands... ✅ (104 KB)
+  🎨 Ace of Pentacles... ✅ (108 KB)
+  🎨 Two of Pentacles... ✅ (119 KB)
+  🎨 Three of Pentacles... ✅ (113 KB)
+  🎨 Four of Pentacles... ✅ (112 KB)
+  🎨 Five of Pentacles... ✅ (106 KB)
+  🎨 Six of Pentacles... ✅ (115 KB)
+  🎨 Seven of Pentacles... ✅ (105 KB)
+  🎨 Eight of Pentacles... ✅ (108 KB)
+  🎨 Nine of Pentacles... ✅ (108 KB)
+  🎨 Ten of Pentacles... ✅ (122 KB)
+  🎨 Page of Pentacles... ✅ (105 KB)
+  🎨 Knight of Pentacles... ✅ (113 KB)
+  🎨 Queen of Pentacles... ✅ (110 KB)
+  🎨 King of Pentacles... ✅ (111 KB)
+
+==================================================
+🎴 Deck: Marsella (78 cards)
+==================================================
+  🎨 Le Mat... ✅ (86 KB)
+  🎨 Le Bateleur... ✅ (97 KB)
+  🎨 La Papesse... ✅ (85 KB)
+  🎨 L'Impératrice... ✅ (110 KB)
+  🎨 L'Empereur... ✅ (109 KB)
+  🎨 Le Pape... ✅ (109 KB)
+  🎨 L'Amoureux... ✅ (107 KB)
+  🎨 Le Chariot... ✅ (115 KB)
+  🎨 La Force... ✅ (93 KB)
+  🎨 L'Ermite... ✅ (94 KB)
+  🎨 La Roue de Fortune... ✅ (120 KB)
+  🎨 La Justice... ✅ (107 KB)
+  🎨 Le Pendu... ✅ (94 KB)
+  🎨 La Mort... ✅ (106 KB)
+  🎨 La Tempérance... ✅ (109 KB)
+  🎨 Le Diable... ✅ (83 KB)
+  🎨 La Maison Dieu... ✅ (89 KB)
+  🎨 L'Étoile... ✅ (103 KB)
+  🎨 La Lune... ✅ (114 KB)
+  🎨 Le Soleil... ✅ (104 KB)
+  🎨 Le Jugement... ✅ (111 KB)
+  🎨 Le Monde... ✅ (104 KB)
+  🎨 As de Coupe... ✅ (83 KB)
+  🎨 Deux de Coupe... ✅ (85 KB)
+  🎨 Trois de Coupe... ✅ (106 KB)
+  🎨 Quatre de Coupe... ✅ (101 KB)
+  🎨 Cinq de Coupe... ✅ (106 KB)
+  🎨 Six de Coupe... ✅ (105 KB)
+  🎨 Sept de Coupe... ✅ (98 KB)
+  🎨 Huit de Coupe... ✅ (114 KB)
+  🎨 Neuf de Coupe... ✅ (112 KB)
+  🎨 Dix de Coupe... ✅ (105 KB)
+  🎨 Valet de Coupe... ✅ (87 KB)
+  🎨 Cavalier de Coupe... ✅ (93 KB)
+  🎨 Reine de Coupe... ✅ (97 KB)
+  🎨 Roi de Coupe... ✅ (96 KB)
+  🎨 As d'Épée... ✅ (102 KB)
+  🎨 Deux d'Épée... ✅ (96 KB)
+  🎨 Trois d'Épée... ✅ (75 KB)
+  🎨 Quatre d'Épée... ✅ (102 KB)
+  🎨 Cinq d'Épée... ✅ (111 KB)
+  🎨 Six d'Épée... ✅ (106 KB)
+  🎨 Sept d'Épée... ✅ (109 KB)
+  🎨 Huit d'Épée... ✅ (94 KB)
+  🎨 Neuf d'Épée... ✅ (105 KB)
+  🎨 Dix d'Épée... ✅ (96 KB)
+  🎨 Valet d'Épée... ✅ (103 KB)
+  🎨 Cavalier d'Épée... ✅ (106 KB)
+  🎨 Reine d'Épée... ✅ (90 KB)
+  🎨 Roi d'Épée... ✅ (101 KB)
+  🎨 As de Bâton... ✅ (65 KB)
+  🎨 Deux de Bâton... ✅ (97 KB)
+  🎨 Trois de Bâton... ✅ (97 KB)
+  🎨 Quatre de Bâton... ✅ (104 KB)
+  🎨 Cinq de Bâton... ✅ (103 KB)
+  🎨 Six de Bâton... ✅ (100 KB)
+  🎨 Sept de Bâton... ✅ (107 KB)
+  🎨 Huit de Bâton... ✅ (99 KB)
+  🎨 Neuf de Bâton... ✅ (95 KB)
+  🎨 Dix de Bâton... ✅ (98 KB)
+  🎨 Valet de Bâton... ✅ (103 KB)
+  🎨 Cavalier de Bâton... ✅ (76 KB)
+  🎨 Reine de Bâton... ✅ (93 KB)
+  🎨 Roi de Bâton... ✅ (105 KB)
+  🎨 As de Denier... ✅ (97 KB)
+  🎨 Deux de Denier... ✅ (98 KB)
+  🎨 Trois de Denier... ✅ (97 KB)
+  🎨 Quatre de Denier... ✅ (107 KB)
+  🎨 Cinq de Denier... ✅ (118 KB)
+  🎨 Six de Denier... ✅ (87 KB)
+  🎨 Sept de Denier... ✅ (93 KB)
+  🎨 Huit de Denier... ✅ (100 KB)
+  🎨 Neuf de Denier... ✅ (117 KB)
+  🎨 Dix de Denier... ✅ (125 KB)
+  🎨 Valet de Denier... ✅ (108 KB)
+  🎨 Cavalier de Denier... ✅ (98 KB)
+  🎨 Reine de Denier... ✅ (113 KB)
+  🎨 Roi de Denier... ✅ (96 KB)
+
+==================================================
+🎴 Deck: Thoth (78 cards)
+==================================================
+  🎨 The Fool... ✅ (110 KB)
+  🎨 The Magus... ✅ (114 KB)
+  🎨 The Priestess... ✅ (102 KB)
+  🎨 The Empress... ✅ (114 KB)
+  🎨 The Emperor...   ⚠ Attempt 1: Status 429, size 1192
+  ⚠ Attempt 2: Status 429, size 1192
+  ⚠ Attempt 3: Status 429, size 1193
+❌ FAILED
+  🎨 The Hierophant...   ⚠ Attempt 1: Status 429, size 1180
+  ⚠ Attempt 2: Status 429, size 1181
+  ⚠ Attempt 3: Status 429, size 1181
+❌ FAILED
+  🎨 The Lovers...   ⚠ Attempt 1: Status 429, size 1196
+  ⚠ Attempt 2: Status 429, size 1196
+  ⚠ Attempt 3: Status 429, size 1195
+❌ FAILED
+  🎨 The Chariot...   ⚠ Attempt 1: Status 429, size 1186
+  ⚠ Attempt 2: Status 429, size 1185
+  ⚠ Attempt 3: Status 429, size 1186
+❌ FAILED
+  🎨 Strength...   ⚠ Attempt 1: Status 429, size 1182
+✅ (106 KB)
+  🎨 The Hermit... ✅ (100 KB)
+  🎨 Fortune...   ⚠ Attempt 1: Status 429, size 1193
+  ⚠ Attempt 2: Status 429, size 1193
+  ⚠ Attempt 3: Status 429, size 1193
+❌ FAILED
+  🎨 Justice...   ⚠ Attempt 1: Status 429, size 1189
+  ⚠ Attempt 2: Status 429, size 1190
+  ⚠ Attempt 3: Status 429, size 1190
+❌ FAILED
+  🎨 The Hanged Man...   ⚠ Attempt 1: Status 429, size 1200
+  ⚠ Attempt 2: Status 429, size 1199
+  ⚠ Attempt 3: Status 429, size 1199
+❌ FAILED
+  🎨 Death...   ⚠ Attempt 1: Status 429, size 1192
+  ⚠ Attempt 2: Status 429, size 1193
+  ⚠ Attempt 3: Status 429, size 1193
+❌ FAILED
+  🎨 Art...   ⚠ Attempt 1: Status 429, size 1189
+✅ (115 KB)
+  🎨 The Devil... ✅ (100 KB)
+  🎨 The Tower... ✅ (115 KB)
+  🎨 The Star... ✅ (111 KB)
+  🎨 The Moon... ✅ (103 KB)
+  🎨 The Sun...   ⚠ Attempt 1: Status 429, size 1171
+  ⚠ Attempt 2: Status 429, size 1170
+  ⚠ Attempt 3: Status 429, size 1171
+❌ FAILED
+  🎨 Aeon...   ⚠ Attempt 1: Status 429, size 1186
+  ⚠ Attempt 2: Status 429, size 1187
+  ⚠ Attempt 3: Status 429, size 1188
+❌ FAILED
+  🎨 The Universe...   ⚠ Attempt 1: Status 429, size 1180
+  ⚠ Attempt 2: Status 429, size 1181
+  ⚠ Attempt 3: Status 429, size 1181
+❌ FAILED
+  🎨 Ace of Cups...   ⚠ Attempt 1: Status 429, size 1174
+  ⚠ Attempt 2: Status 429, size 1174
+  ⚠ Attempt 3: Status 429, size 1174
+❌ FAILED
+  🎨 Two of Cups...   ⚠ Attempt 1: Status 429, size 1157
+✅ (113 KB)
+  🎨 Three of Cups... ✅ (111 KB)
+  🎨 Four of Cups... ✅ (112 KB)
+  🎨 Five of Cups... ✅ (114 KB)
+  🎨 Six of Cups...   ⚠ Attempt 1: Status 429, size 1153
+  ⚠ Attempt 2: Status 429, size 1152
+  ⚠ Attempt 3: Status 429, size 1153
+❌ FAILED
+  🎨 Seven of Cups...   ⚠ Attempt 1: Status 429, size 1160
+  ⚠ Attempt 2: Status 429, size 1160
+  ⚠ Attempt 3: Status 429, size 1160
+❌ FAILED
+  🎨 Eight of Cups...   ⚠ Attempt 1: Status 429, size 1152
+  ⚠ Attempt 2: Status 429, size 1152
+  ⚠ Attempt 3: Status 429, size 1152
+❌ FAILED
+  🎨 Nine of Cups...   ⚠ Attempt 1: Status 429, size 1149
+  ⚠ Attempt 2: Status 429, size 1148
+  ⚠ Attempt 3: Status 429, size 1149
+❌ FAILED
+  🎨 Ten of Cups...   ⚠ Attempt 1: Status 429, size 1155
+✅ (116 KB)
+  🎨 Princess of Cups... ✅ (105 KB)
+  🎨 Prince of Cups... ✅ (105 KB)
+  🎨 Queen of Cups...   ⚠ Attempt 1: Status 429, size 1173
+  ⚠ Attempt 2: Status 429, size 1172
+  ⚠ Attempt 3: Status 429, size 1171
+❌ FAILED
+  🎨 King of Cups...   ⚠ Attempt 1: Status 429, size 1181
+  ⚠ Attempt 2: Status 429, size 1182
+  ⚠ Attempt 3: Status 429, size 1182
+❌ FAILED
+  🎨 Ace of Swords...   ⚠ Attempt 1: Status 429, size 1162
+  ⚠ Attempt 2: Status 429, size 1162
+  ⚠ Attempt 3: Status 429, size 1162
+❌ FAILED
+  🎨 Two of Swords...   ⚠ Attempt 1: Status 429, size 1153
+  ⚠ Attempt 2: Status 429, size 1153
+  ⚠ Attempt 3: Status 429, size 1153
+❌ FAILED
+  🎨 Three of Swords...   ⚠ Attempt 1: Status 429, size 1151
+✅ (96 KB)
+  🎨 Four of Swords... ✅ (110 KB)
+  🎨 Five of Swords... ✅ (114 KB)
+  🎨 Six of Swords... ✅ (110 KB)
+  🎨 Seven of Swords... ✅ (104 KB)
+  🎨 Eight of Swords... ✅ (106 KB)
+  🎨 Nine of Swords... ✅ (104 KB)
+  🎨 Ten of Swords... ✅ (99 KB)
+  🎨 Princess of Swords... ✅ (106 KB)
+  🎨 Prince of Swords... ✅ (103 KB)
+  🎨 Queen of Swords... ✅ (100 KB)
+  🎨 King of Swords... ✅ (103 KB)
+  🎨 Ace of Wands... ✅ (105 KB)
+  🎨 Two of Wands... ✅ (116 KB)
+  🎨 Three of Wands... ✅ (108 KB)
+  🎨 Four of Wands... ✅ (112 KB)
+  🎨 Five of Wands... ✅ (117 KB)
+  🎨 Six of Wands... ✅ (106 KB)
+  🎨 Seven of Wands... ✅ (106 KB)
+  🎨 Eight of Wands... ✅ (114 KB)
+  🎨 Nine of Wands... ✅ (104 KB)
+  🎨 Ten of Wands... ✅ (112 KB)
+  🎨 Princess of Wands... ✅ (111 KB)
+  🎨 Prince of Wands... ✅ (107 KB)
+  🎨 Queen of Wands... ✅ (109 KB)
+  🎨 King of Wands... ✅ (105 KB)
+  🎨 Ace of Pentacles... ✅ (109 KB)
+  🎨 Two of Pentacles... ✅ (114 KB)
+  🎨 Three of Pentacles... ✅ (112 KB)
+  🎨 Four of Pentacles... ✅ (121 KB)
+  🎨 Five of Pentacles... ✅ (115 KB)
+  🎨 Six of Pentacles... ✅ (113 KB)
+  🎨 Seven of Pentacles... ✅ (113 KB)
+  🎨 Eight of Pentacles... ✅ (119 KB)
+  🎨 Nine of Pentacles... ✅ (109 KB)
+  🎨 Ten of Pentacles... ✅ (106 KB)
+  🎨 Princess of Pentacles... ✅ (111 KB)
+  🎨 Prince of Pentacles... ✅ (110 KB)
+  🎨 Queen of Pentacles... ✅ (110 KB)
+  🎨 King of Pentacles... ✅ (108 KB)
+
+==================================================
+🎴 Deck: El Valle (78 cards)
+==================================================
+  🎨 El Loco... ✅ (81 KB)
+  🎨 El Mago... ✅ (88 KB)
+  🎨 La Sacerdotisa... ✅ (86 KB)
+  🎨 La Emperatriz... ✅ (100 KB)
+  🎨 El Emperador... ✅ (87 KB)
+  🎨 El Sumo Sacerdote... ✅ (74 KB)
+  🎨 Los Enamorados... ✅ (92 KB)
+  🎨 El Carro... ✅ (89 KB)
+  🎨 La Fuerza... ✅ (95 KB)
+  🎨 El Ermitaño... ✅ (86 KB)
+  🎨 La Rueda de la Fortuna... ✅ (80 KB)
+  🎨 La Justicia... ✅ (91 KB)
+  🎨 El Ahorcado... ✅ (82 KB)
+  🎨 La Muerte... ✅ (104 KB)
+  🎨 La Templanza... ✅ (84 KB)
+  🎨 El Diablo... ✅ (77 KB)
+  🎨 La Torre... ✅ (83 KB)
+  🎨 La Estrella... ✅ (82 KB)
+  🎨 La Luna... ✅ (86 KB)
+  🎨 El Sol... ✅ (94 KB)
+  🎨 El Juicio... ✅ (98 KB)
+  🎨 El Mundo... ✅ (87 KB)
+  🎨 As de Copas... ✅ (91 KB)
+  🎨 Dos de Copas... ✅ (90 KB)
+  🎨 Tres de Copas... ✅ (88 KB)
+  🎨 Cuatro de Copas... ✅ (94 KB)
+  🎨 Cinco de Copas... ✅ (81 KB)
+  🎨 Seis de Copas... ✅ (94 KB)
+  🎨 Siete de Copas... ✅ (99 KB)
+  🎨 Ocho de Copas... ✅ (82 KB)
+  🎨 Nueve de Copas... ✅ (90 KB)
+  🎨 Diez de Copas... ✅ (84 KB)
+  🎨 Sota de Copas... ✅ (80 KB)
+  🎨 Caballero de Copas... ✅ (96 KB)
+  🎨 Reina de Copas... ✅ (94 KB)
+  🎨 Rey de Copas... ✅ (83 KB)
+  🎨 As de Espadas... ✅ (84 KB)
+  🎨 Dos de Espadas... ✅ (91 KB)
+  🎨 Tres de Espadas... ✅ (76 KB)
+  🎨 Cuatro de Espadas... ✅ (91 KB)
+  🎨 Cinco de Espadas... ✅ (91 KB)
+  🎨 Seis de Espadas... ✅ (91 KB)
+  🎨 Siete de Espadas... ✅ (89 KB)
+  🎨 Ocho de Espadas... ✅ (93 KB)
+  🎨 Nueve de Espadas... ✅ (89 KB)
+  🎨 Diez de Espadas... ✅ (89 KB)
+  🎨 Sota de Espadas... ✅ (87 KB)
+  🎨 Caballero de Espadas... ✅ (88 KB)
+  🎨 Reina de Espadas... ✅ (97 KB)
+  🎨 Rey de Espadas... ✅ (93 KB)
+  🎨 As de Bastos... ✅ (84 KB)
+  🎨 Dos de Bastos... ✅ (78 KB)
+  🎨 Tres de Bastos... ✅ (77 KB)
+  🎨 Cuatro de Bastos... ✅ (81 KB)
+  🎨 Cinco de Bastos... ✅ (95 KB)
+  🎨 Seis de Bastos... ✅ (85 KB)
+  🎨 Siete de Bastos... ✅ (81 KB)
+  🎨 Ocho de Bastos... ✅ (84 KB)
+  🎨 Nueve de Bastos... ✅ (85 KB)
+  🎨 Diez de Bastos... ✅ (78 KB)
+  🎨 Sota de Bastos... ✅ (93 KB)
+  🎨 Caballero de Bastos... ✅ (91 KB)
+  🎨 Reina de Bastos... ✅ (87 KB)
+  🎨 Rey de Bastos... ✅ (97 KB)
+  🎨 As de Oros... ✅ (93 KB)
+  🎨 Dos de Oros... ✅ (77 KB)
+  🎨 Tres de Oros... ✅ (98 KB)
+  🎨 Cuatro de Oros... ✅ (98 KB)
+  🎨 Cinco de Oros... ✅ (113 KB)
+  🎨 Seis de Oros... ✅ (104 KB)
+  🎨 Siete de Oros... ✅ (93 KB)
+  🎨 Ocho de Oros... ✅ (91 KB)
+  🎨 Nueve de Oros... ✅ (98 KB)
+  🎨 Diez de Oros... ✅ (105 KB)
+  🎨 Sota de Oros... ✅ (80 KB)
+  🎨 Caballero de Oros... ✅ (88 KB)
+  🎨 Reina de Oros... ✅ (92 KB)
+  🎨 Rey de Oros... ✅ (77 KB)
+
+==================================================
+📊 Summary:
+  Total: 312
+  ✅ Success: 292
+  ⏭ Skipped: 0
+  ❌ Failed: 20
+==================================================
