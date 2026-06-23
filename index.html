@@ -3,26 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🔮 TAROT — Lectura y Aprendizaje</title>
+  <title>🔮 TAROT — Lectura y Aprendizaje de Cartas | App Gratuita</title>
+  <meta name="description" content="Descubrí los misterios del tarot: 4 mazos (Rider-Waite, Marsella, Thoth, El Valle), tiradas, significados, lecturas prácticas y modo historia. App gratuita.">
+  <meta name="keywords" content="tarot, cartas de tarot, lectura de tarot, rider-waite, marsella, thoth, significado cartas, tirada de tarot, aprender tarot, arcana, mayor arcano">
+  <meta name="author" content="Exequiel Rua — CodeBridge.com.ar">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://aprendetarot.web.app/">
+
+  <!-- PWA -->
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TAROT">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aprendetarot.web.app/">
+  <meta property="og:title" content="🔮 TAROT — Lectura y Aprendizaje de Cartas">
+  <meta property="og:description" content="4 mazos, tiradas, significados detallados, lecturas prácticas y modo historia. App gratuita para aprender tarot.">
+  <meta property="og:image" content="https://aprendetarot.web.app/img/icon-512.png">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="TAROT — App de Cartas">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://aprendetarot.web.app/">
+  <meta name="twitter:title" content="🔮 TAROT — Lectura y Aprendizaje de Cartas">
+  <meta name="twitter:description" content="4 mazos, tiradas, significados y lecturas prácticas. App gratuita para aprender tarot.">
+  <meta name="twitter:image" content="https://aprendetarot.web.app/img/icon-512.png">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Preconnect for Firebase -->
+  <link rel="preconnect" href="https://www.gstatic.com">
+  <link rel="preconnect" href="https://firestore.googleapis.com">
+
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1a1a2e">
-  <meta name="description" content="🔮 TAROT — Lectura y aprendizaje de cartas de tarot. Múltiples mazos, tiradas, significados.">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "TAROT — Lectura y Aprendizaje",
+    "operatingSystem": "Web",
+    "applicationCategory": "EducationalApplication",
+    "description": "App gratuita para aprender tarot con 4 mazos, tiradas, significados detallados y lecturas prácticas.",
+    "url": "https://aprendetarot.web.app/",
+    "inLanguage": "es",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "4 mazos: Rider-Waite, Marsella, Thoth, El Valle",
+      "Tiradas de 1, 2, 3, 5, 7 y 10 cartas",
+      "Significados upright y reversed",
+      "Modo historia: El Viaje del Loco",
+      "Práctica de lectura con ejercicios interactivos"
+    ]
+  }
+  </script>
 </head>
 <body>
+  <!-- Login Screen -->
+  <div id="pantalla-login" class="pantalla activa">
+    <div class="login-container">
+      <div class="login-header">
+        <div class="login-cards">
+          <div class="login-card" id="llc1"></div>
+          <div class="login-card" id="llc2"></div>
+          <div class="login-card" id="llc3"></div>
+        </div>
+        <h1 class="login-title">TAROT</h1>
+        <p class="login-tagline">Descubrí los misterios del tarot</p>
+      </div>
+
+      <div id="login-form-container">
+        <!-- Login con email -->
+        <form id="login-email-section" class="login-section" onsubmit="return false;">
+          <input type="email" id="login-email" class="login-input" placeholder="Correo electrónico" autocomplete="email">
+          <input type="password" id="login-password" class="login-input" placeholder="Contraseña" autocomplete="current-password">
+          <button type="submit" class="btn-primary btn-full" id="btn-login-email">Entrar</button>
+          <button type="button" class="btn-text" id="btn-show-register">¿No tenés cuenta? Creá una</button>
+        </form>
+
+        <!-- Registro -->
+        <form id="register-section" class="login-section hidden" onsubmit="return false;">
+          <input type="text" id="register-name" class="login-input" placeholder="Tu nombre de vidente">
+          <input type="email" id="register-email" class="login-input" placeholder="Correo electrónico">
+          <input type="password" id="register-password" class="login-input" placeholder="Contraseña (mínimo 6 caracteres)" autocomplete="new-password">
+          <button type="submit" class="btn-primary btn-full" id="btn-register-email">Crear Cuenta</button>
+          <button type="button" class="btn-text" id="btn-show-login">¿Ya tenés cuenta? Entrá</button>
+        </form>
+
+        <div class="login-divider"><span>o</span></div>
+
+        <!-- Login con Google -->
+        <button class="btn-google btn-full" id="btn-login-google">
+          <svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Continuar con Google
+        </button>
+
+        <button class="btn-ghost btn-full" id="btn-saltar-login">Saltar por ahora</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Loading Screen -->
   <div id="loading-screen">
     <div class="loading-content">
-      <div class="loading-eye">🔮</div>
+      <div class="loading-cards">
+        <div class="loading-card" id="lc1"></div>
+        <div class="loading-card" id="lc2"></div>
+        <div class="loading-card" id="lc3"></div>
+      </div>
       <h1 class="loading-title">TAROT</h1>
+      <p class="loading-sub">Descubrí los misterios del tarot</p>
       <div class="loading-bar">
         <div class="loading-fill"></div>
       </div>
     </div>
   </div>
+
+  <!-- Background Falling Cards -->
+  <div class="falling-cards-bg" id="falling-cards-bg"></div>
 
   <!-- App Container -->
   <div id="app" class="app hidden">
@@ -31,52 +144,99 @@
     <div id="pantalla-inicio" class="pantalla activa">
       <header class="pantalla-header">
         <div class="header-content">
-          <h1 class="app-titulo">🔮 TAROT</h1>
+          <h1 class="app-titulo">TAROT</h1>
           <p class="app-subtitulo">Lectura y Aprendizaje</p>
         </div>
       </header>
       
       <main class="main-inicio">
-        <!-- Hero Card -->
-        <div class="hero-card">
-          <div class="hero-icon">🌙</div>
-          <h2>Bienvenido</h2>
-          <p>Descubre los secretos del tarot con múltiples mazos y lecturas detalladas</p>
+        <!-- Hero Section -->
+        <div class="hero-mystical">
+          <div class="hero-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+          </div>
+          <div class="hero-content">
+            <div class="hero-eye">☽</div>
+            <h2 class="hero-title">Descubrí tu camino</h2>
+            <p class="hero-desc">Múltiples mazos, lecturas detalladas y aprendizaje interactivo</p>
+          </div>
+        </div>
+
+        <!-- Introducción -->
+        <div class="intro-section">
+          <p class="intro-text">
+            El Tarot es un puente entre tu conciencia y tu intuición. Cada carta refleja
+            arquetipos universales que te ayudan a explorar preguntas, descubrir perspectivas
+            y encontrar claridad. Elegí un mazo, seleccioná una tirada y dejá que las cartas
+            te guíen.
+          </p>
         </div>
 
         <!-- Quick Actions -->
         <div class="quick-actions">
           <button class="quick-action" onclick="irA('tirada')">
-            <span class="quick-icon">🃏</span>
+            <span class="quick-icon">✦</span>
             <span class="quick-text">Nueva Tirada</span>
           </button>
           <button class="quick-action" onclick="irA('referencia')">
-            <span class="quick-icon">📖</span>
+            <span class="quick-icon">☽</span>
             <span class="quick-text">Cartas</span>
           </button>
           <button class="quick-action" onclick="irA('aprendizaje')">
-            <span class="quick-icon">🎓</span>
+            <span class="quick-icon">◈</span>
             <span class="quick-text">Aprender</span>
           </button>
         </div>
 
         <!-- Daily Card -->
         <div class="daily-card" id="daily-card">
-          <h3>✨ Carta del Día</h3>
-          <div class="daily-card-content" onclick="revelarCartaDiaria()">
-            <div class="card-back-mini">
-              <span class="card-back-symbol">🌙</span>
-            </div>
-            <p>Tocá para revelar tu carta del día</p>
+          <div class="daily-header">
+            <span class="daily-star">✧</span>
+            <h3>Carta del Día</h3>
+            <span class="daily-star">✧</span>
           </div>
+          <div class="daily-flip-container" onclick="revelarCartaDiaria()">
+            <div class="daily-flipper" id="daily-flipper">
+              <div class="daily-flip-front" id="daily-flip-front">
+                <!-- Reverso SVG -->
+              </div>
+              <div class="daily-flip-back" id="daily-flip-back">
+                <!-- Imagen de la carta -->
+              </div>
+            </div>
+          </div>
+          <p class="daily-card-text" id="daily-card-text">Tocá para revelar</p>
         </div>
 
         <!-- Recent Readings -->
         <div class="recent-section">
-          <h3>📋 Últimas Lecturas</h3>
+          <div class="section-header">
+            <span class="section-line"></span>
+            <h3>Últimas Lecturas</h3>
+            <span class="section-line"></span>
+          </div>
           <div id="recent-readings" class="recent-list">
             <p class="empty-state">Aún no tenés lecturas guardadas</p>
           </div>
+        </div>
+
+        <!-- Other Products -->
+        <div class="other-products">
+          <div class="section-header">
+            <span class="section-line"></span>
+            <h3>Otros Productos</h3>
+            <span class="section-line"></span>
+          </div>
+          <a href="https://runas.web.app" target="_blank" class="product-link">
+            <span class="product-icon">ᚱ</span>
+            <div class="product-info">
+              <span class="product-name">RUNES</span>
+              <span class="product-desc">Aprendé las runas vikingas</span>
+            </div>
+            <span class="product-arrow">→</span>
+          </a>
         </div>
       </main>
     </div>
@@ -96,19 +256,19 @@
           <h3>Mazo</h3>
           <div class="deck-options" id="deck-options">
             <button class="deck-option activo" data-deck="rider">
-              <span class="deck-icon">🃏</span>
+              <span class="deck-icon" id="deck-icon-rider"></span>
               <span>Rider-Waite</span>
             </button>
             <button class="deck-option" data-deck="marsella">
-              <span class="deck-icon">🂠</span>
+              <span class="deck-icon" id="deck-icon-marsella"></span>
               <span>Marsella</span>
             </button>
             <button class="deck-option" data-deck="thoth">
-              <span class="deck-icon">🔯</span>
+              <span class="deck-icon" id="deck-icon-thoth"></span>
               <span>Thoth</span>
             </button>
             <button class="deck-option" data-deck="valle">
-              <span class="deck-icon">⚱️</span>
+              <span class="deck-icon" id="deck-icon-valle"></span>
               <span>El Valle</span>
             </button>
           </div>
@@ -122,6 +282,10 @@
               <span class="spread-num">1</span>
               <span>Una Carta</span>
             </button>
+            <button class="spread-option" data-spread="dos">
+              <span class="spread-num">2</span>
+              <span>Vínculo</span>
+            </button>
             <button class="spread-option" data-spread="tres">
               <span class="spread-num">3</span>
               <span>Pasado-Presente-Futuro</span>
@@ -133,6 +297,10 @@
             <button class="spread-option" data-spread="amor">
               <span class="spread-num">7</span>
               <span>Del Amor</span>
+            </button>
+            <button class="spread-option" data-spread="arbol">
+              <span class="spread-num">10</span>
+              <span>Árbol de la Vida</span>
             </button>
             <button class="spread-option" data-spread="celtica">
               <span class="spread-num">10</span>
@@ -175,6 +343,29 @@
       </header>
       
       <main class="main-referencia">
+        <!-- Deck Selector for Reference -->
+        <div class="ref-deck-selector">
+          <h3>Mazo para ver significados</h3>
+          <div class="ref-deck-options" id="ref-deck-options">
+            <button class="ref-deck-option activo" data-deck="rider">
+              <div class="ref-deck-back" id="ref-back-rider"></div>
+              <span>Rider-Waite</span>
+            </button>
+            <button class="ref-deck-option" data-deck="marsella">
+              <div class="ref-deck-back" id="ref-back-marsella"></div>
+              <span>Marsella</span>
+            </button>
+            <button class="ref-deck-option" data-deck="thoth">
+              <div class="ref-deck-back" id="ref-back-thoth"></div>
+              <span>Thoth</span>
+            </button>
+            <button class="ref-deck-option" data-deck="valle">
+              <div class="ref-deck-back" id="ref-back-valle"></div>
+              <span>El Valle</span>
+            </button>
+          </div>
+        </div>
+
         <!-- Filter Tabs -->
         <div class="filter-tabs">
           <button class="filter-tab activo" data-filter="todos">Todos</button>
@@ -202,29 +393,200 @@
       </header>
       
       <main class="main-aprendizaje">
-        <div class="learning-section">
-          <h3>Lecciones</h3>
-          <div class="lesson-list" id="lesson-list">
-            <!-- Lessons will be loaded here -->
+        <!-- Progress Card -->
+        <div class="learning-progress">
+          <div class="level-display" id="level-display">
+            <div class="level-badge" id="level-badge">1</div>
+            <div class="level-info">
+              <span class="level-title" id="level-title">Aprendiz</span>
+              <div class="xp-bar">
+                <div class="xp-fill" id="xp-fill"></div>
+              </div>
+              <span class="xp-text" id="xp-text">0 / 100 XP</span>
+            </div>
+          </div>
+          <h3>Tu Progreso</h3>
+          <div class="progress-stats">
+            <div class="progress-item">
+              <span class="progress-number" id="learned-count">0</span>
+              <span class="progress-label">Cartas Aprendidas</span>
+            </div>
+            <div class="progress-item">
+              <span class="progress-number" id="mastered-count">0</span>
+              <span class="progress-label">Dominadas</span>
+            </div>
+            <div class="progress-item">
+              <span class="progress-number" id="accuracy-percent">0%</span>
+              <span class="progress-label">Precisión</span>
+            </div>
           </div>
         </div>
 
+        <!-- Lessons Section — Modo Historia -->
         <div class="learning-section">
-          <h3>Práctica</h3>
+          <h3>📖 El Viaje del Loco</h3>
+          <div class="chapters-container" id="chapters-container"></div>
+          
+          <!-- Story Screen (hidden by default) -->
+          <div class="story-screen hidden" id="story-screen">
+            <button class="story-back-btn" onclick="cerrarHistoria()">← Volver</button>
+            <div class="story-chapter-header">
+              <span class="story-chapter-title" id="story-chapter-title"></span>
+            </div>
+            
+            <div class="story-narrative-area" id="story-narrative-area">
+              <h2 class="story-scene-title" id="story-scene-title"></h2>
+              <p class="story-narrative" id="story-narrative"></p>
+              
+              <div class="story-card-showcase">
+                <div class="story-card-img" id="story-card-img"></div>
+                <span class="story-card-name" id="story-card-name"></span>
+              </div>
+              
+              <button class="btn-primary story-start-btn" onclick="iniciarEjercicio()">Comenzar desafío →</button>
+            </div>
+            
+            <div class="story-exercise-area hidden" id="story-exercise-area">
+              <div class="story-exercise-header">
+                <span class="story-score" id="story-score">0/0</span>
+              </div>
+              <div id="story-exercise-content"></div>
+            </div>
+            
+            <div class="story-result hidden" id="story-result">
+              <div class="story-result-icon" id="story-result-icon"></div>
+              <h3 class="story-result-title" id="story-result-title"></h3>
+              <p class="story-result-score" id="story-result-score"></p>
+              <p class="story-result-stars" id="story-result-stars"></p>
+              <button class="btn-primary" id="story-next-btn">Siguiente escena →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Practice Section -->
+        <div class="learning-section">
+          <h3>🎯 Práctica</h3>
           <div class="practice-options">
             <button class="practice-btn" onclick="iniciarPractica('significado')">
               <span class="practice-icon">❓</span>
-              <span>¿Qué significa esta carta?</span>
+              <div class="practice-info">
+                <span class="practice-title">Conectá Carta ↔ Significado</span>
+                <span class="practice-desc">Mirá la carta y elegí el significado correcto</span>
+              </div>
             </button>
             <button class="practice-btn" onclick="iniciarPractica('identificar')">
               <span class="practice-icon">🔍</span>
-              <span>Identificá la carta</span>
+              <div class="practice-info">
+                <span class="practice-title">Identificá la Carta</span>
+                <span class="practice-desc">Te damos el significado, encontrá la carta</span>
+              </div>
             </button>
             <button class="practice-btn" onclick="iniciarPractica('inversa')">
               <span class="practice-icon">🔄</span>
-              <span>Upright vs Reversed</span>
+              <div class="practice-info">
+                <span class="practice-title">Upright o Reversed</span>
+                <span class="practice-desc">Mirá la carta y su significado, decí si está derecha o invertida</span>
+              </div>
+            </button>
+            <button class="practice-btn" onclick="iniciarPractica('rapido')">
+              <span class="practice-icon">⚡</span>
+              <div class="practice-info">
+                <span class="practice-title">Quiz Rápido</span>
+                <span class="practice-desc">10 preguntas, 30 segundos</span>
+              </div>
+            </button>
+            <button class="practice-btn" onclick="iniciarLectura()">
+              <span class="practice-icon">🔮</span>
+              <div class="practice-info">
+                <span class="practice-title">Práctica de Lectura</span>
+                <span class="practice-desc">Una carta — Respuesta rápida</span>
+              </div>
+            </button>
+            <button class="practice-btn" onclick="iniciarLectura('dos')">
+              <span class="practice-icon">💕</span>
+              <div class="practice-info">
+                <span class="practice-title">Lectura de Vínculo</span>
+                <span class="practice-desc">Dos cartas — Tu energía vs. La otra persona</span>
+              </div>
+            </button>
+            <button class="practice-btn" onclick="iniciarLectura('tres')">
+              <span class="practice-icon">⏳</span>
+              <div class="practice-info">
+                <span class="practice-title">Pasado, Presente, Futuro</span>
+                <span class="practice-desc">Tres cartas — Evolución temporal</span>
+              </div>
+            </button>
+            <button class="practice-btn" onclick="iniciarLectura('cruz')">
+              <span class="practice-icon">✝️</span>
+              <div class="practice-info">
+                <span class="practice-title">Cruz Simple</span>
+                <span class="practice-desc">Cinco cartas — Situación, obstáculo, consejo</span>
+              </div>
+            </button>
+            <button class="practice-btn" onclick="iniciarLectura('amor7')">
+              <span class="practice-icon">💖</span>
+              <div class="practice-info">
+                <span class="practice-title">Tirada del Amor</span>
+                <span class="practice-desc">Siete cartas — Solo Arcanos Mayores</span>
+              </div>
             </button>
           </div>
+        </div>
+
+        <!-- Practice Area (hidden by default) -->
+        <div class="practice-area hidden" id="practice-area">
+          <div class="practice-header">
+            <button class="practice-back" onclick="cerrarLeccion()">← Volver</button>
+            <h3 id="practice-title">Práctica</h3>
+            <select id="practice-deck-select" class="practice-deck-select" onchange="cambiarMazoPractica(this.value)">
+              <option value="rider">🃏 Rider-Waite</option>
+              <option value="marsella">🃏 Marsella</option>
+              <option value="thoth">🃏 Thoth</option>
+              <option value="valle">🃏 El Valle</option>
+            </select>
+          </div>
+          <div class="practice-content" id="practice-content">
+            <!-- Practice content will be loaded here -->
+          </div>
+          <div class="practice-footer">
+            <span class="practice-score" id="practice-score">0/0</span>
+            <span class="practice-timer hidden" id="practice-timer">⏱ 30s</span>
+            <button class="btn-primary" id="practice-next" onclick="siguientePregunta()">Siguiente</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ═══════════════ PRÁCTICA DE LECTURA (con fan) ═══════════════ -->
+    <div id="pantalla-lectura" class="pantalla hidden">
+      <header class="pantalla-header">
+        <div class="header-content">
+          <button class="btn-back" onclick="cerrarLectura()">← Volver</button>
+          <h1 id="lectura-title">🔮 Práctica de Lectura</h1>
+        </div>
+      </header>
+      
+      <main class="main-lectura">
+        <!-- Fan de cartas -->
+        <div class="lectura-fan-area">
+          <p class="lectura-instruction" id="lectura-instruction">Elegí las cartas del abanico</p>
+          <div class="lectura-fan" id="lectura-fan"></div>
+        </div>
+        
+        <!-- Tablero de tirada -->
+        <div class="lectura-board" id="lectura-board"></div>
+        
+        <!-- Pregunta y opciones (oculto al inicio) -->
+        <div class="lectura-question-area hidden" id="lectura-question-area">
+          <p class="lectura-question" id="lectura-question"></p>
+          <div class="lectura-options" id="lectura-options"></div>
+          <div class="lectura-explanation hidden" id="lectura-explanation"></div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="lectura-footer">
+          <span class="lectura-score" id="lectura-score">0/0</span>
+          <button class="btn-primary hidden" id="lectura-next" onclick="siguienteLectura()">Siguiente</button>
         </div>
       </main>
     </div>
@@ -242,7 +604,11 @@
         <div class="profile-card">
           <div class="profile-avatar">🔮</div>
           <h2 id="user-name">Vidente</h2>
-          <p class="profile-level">Nivel <span id="user-level">1</span></p>
+          <p class="profile-level">Nivel <span id="user-level">1</span> — <span id="user-level-name">Aprendiz</span></p>
+          <div class="xp-bar-profile">
+            <div class="xp-fill-profile" id="xp-fill-profile"></div>
+          </div>
+          <p class="xp-text" id="xp-text">0 / 100 XP</p>
         </div>
 
         <div class="stats-grid">
@@ -258,11 +624,32 @@
             <span class="stat-number" id="stat-practice">0</span>
             <span class="stat-label">Ejercicios</span>
           </div>
+          <div class="stat-card">
+            <span class="stat-number" id="stat-streak">0</span>
+            <span class="stat-label">Racha (días)</span>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <h3>📖 Progreso del Story Mode</h3>
+          <div id="story-progress-list" class="story-progress-list"></div>
+        </div>
+
+        <div class="profile-section">
+          <h3>🏆 Logros</h3>
+          <div id="achievements-list" class="achievements-grid"></div>
         </div>
 
         <div class="profile-actions">
           <button class="btn-secondary" onclick="exportarDiario()">📥 Exportar Diario</button>
           <button class="btn-secondary" onclick="togglePremium()">⭐ Modo Pro</button>
+          <button class="btn-secondary" id="btn-edit-profile">✏️ Editar perfil</button>
+          <button class="btn-logout" onclick="logoutApp()">🚪 Salir</button>
+        </div>
+
+        <div class="profile-section" style="text-align:center; margin-top:1.5rem; opacity:0.6; font-size:0.85rem;">
+          <p>Desarrollado por <strong>Exequiel Rua</strong> · <a href="https://codebridge.com.ar" target="_blank" style="color:#d4af37;">CodeBridge.com.ar</a></p>
+          <p style="margin-top:0.3rem;">v1.0 · <a href="https://runas.web.app" target="_blank" style="color:#d4af37;">🔷 Proyecto hermano: RUNES</a></p>
         </div>
       </main>
     </div>
@@ -270,26 +657,68 @@
     <!-- ═══════════════ NAVEGACIÓN INFERIOR ═══════════════ -->
     <nav class="nav-inferior">
       <button class="nav-btn activa" data-pantalla="inicio">
-        <span class="nav-icon">🏠</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+          </svg>
+        </span>
         <span>Inicio</span>
       </button>
       <button class="nav-btn" data-pantalla="tirada">
-        <span class="nav-icon">🃏</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <circle cx="9" cy="10" r="1" fill="currentColor"/>
+            <circle cx="15" cy="10" r="1" fill="currentColor"/>
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+          </svg>
+        </span>
         <span>Tirada</span>
       </button>
       <button class="nav-btn" data-pantalla="referencia">
-        <span class="nav-icon">📖</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="10" rx="1"/>
+            <rect x="14" y="3" width="7" height="10" rx="1"/>
+            <rect x="8" y="11" width="8" height="10" rx="1"/>
+            <path d="M5 6h3M16 6h3"/>
+          </svg>
+        </span>
         <span>Cartas</span>
       </button>
       <button class="nav-btn" data-pantalla="aprendizaje">
-        <span class="nav-icon">🎓</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </span>
         <span>Aprender</span>
       </button>
       <button class="nav-btn" data-pantalla="perfil">
-        <span class="nav-icon">👤</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M20 21a8 8 0 10-16 0"/>
+            <circle cx="12" cy="8" r="1.5" fill="currentColor" opacity="0.3"/>
+          </svg>
+        </span>
         <span>Perfil</span>
       </button>
     </nav>
+
+    <!-- ═══════════════ MÚSICA DE FONDO ═══════════════ -->
+    <div class="music-player">
+      <button class="music-toggle" id="music-toggle" onclick="toggleMusic()">🔇</button>
+      <div class="music-tracks" id="music-tracks">
+        <button class="music-track active" onclick="playTrack('audio/Tarot.mp3', this)">🔮 Tarot</button>
+        <button class="music-track" onclick="playTrack('audio/Hadas.mp3', this)">🧚 Hadas</button>
+      </div>
+    </div>
+    <audio id="bg-music" loop preload="auto"></audio>
 
     <!-- ═══════════════ MODAL CARTA ═══════════════ -->
     <div class="modal hidden" id="modal-carta">
@@ -301,6 +730,7 @@
         </div>
         <h2 class="modal-carta-nombre" id="modal-carta-nombre"></h2>
         <p class="modal-carta-palo" id="modal-carta-palo"></p>
+        <button class="modal-carta-invert-btn" id="modal-carta-invert-btn" onclick="toggleModalInvert()">🔄 Ver invertida</button>
         <div class="modal-carta-significados">
           <div class="significado-section">
             <h4>⬆️ Significado Upright</h4>
@@ -343,10 +773,36 @@
     <span id="toast-message"></span>
   </div>
 
+  <!-- ═══════════════ MODAL EDITAR PERFIL ═══════════════ -->
+  <div id="modal-edit-profile" class="modal-overlay hidden">
+    <div class="modal-content" style="max-width:400px; margin:2rem auto; background:#1e1e3a; border:1px solid #d4af37; border-radius:16px; padding:1.5rem; position:relative;">
+      <button class="modal-close" onclick="document.getElementById('modal-edit-profile').classList.add('hidden')" style="position:absolute; top:0.8rem; right:1rem; background:none; border:none; color:#f5f5dc; font-size:1.5rem; cursor:pointer;">✕</button>
+      <h2 style="text-align:center; color:#d4af37; margin-bottom:1.2rem;">✏️ Editar Perfil</h2>
+      <div style="margin-bottom:1rem;">
+        <label style="display:block; margin-bottom:0.4rem; color:#aaa;">Nombre</label>
+        <input type="text" id="edit-profile-name" maxlength="20" placeholder="Tu nombre" style="width:100%; padding:0.7rem; background:#0d0d1a; border:1px solid #333; border-radius:8px; color:#f5f5dc; font-size:1rem;">
+      </div>
+      <button class="btn-primary btn-full" id="btn-save-profile" style="width:100%; padding:0.8rem; background:#d4af37; border:none; border-radius:8px; color:#1a1a2e; font-weight:bold; cursor:pointer;">💾 Guardar</button>
+    </div>
+  </div>
+
   <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="js/cards.js"></script>
-  <script src="js/animations.js"></script>
-  <script src="js/app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics-compat.js" defer></script>
+  <script src="js/cardbacks.js?v=2" defer></script>
+  <script src="js/cards.js?v=2" defer></script>
+  <script src="js/meanings_rider.js?v=2" defer></script>
+  <script src="js/meanings_marsella.js?v=2" defer></script>
+  <script src="js/meanings_thoth.js?v=2" defer></script>
+  <script src="js/meanings_valle.js?v=2" defer></script>
+  <script src="js/reading_practice.js?v=3" defer></script>
+  <script src="js/levels.js?v=1" defer></script>
+  <script src="js/lessons.js?v=1" defer></script>
+  <script src="js/achievements.js?v=1" defer></script>
+  <script src="js/animations.js?v=2" defer></script>
+  <script src="js/app.js?v=3" defer></script>
 </body>
 </html>

@@ -7,7 +7,7 @@ const ARCANOS_MAYORES = [
   { id: 2, nombre: "La Sacerdotisa", nombre_en: "The High Priestess", palo: "mayor", significado: "Intuición, misterio, conocimiento oculto. Escuchar tu voz interior, confiar en tus instintos.", significado_invertido: "Secretos revelados, confusión, falta de intuición. Ignorar las señales internas.", numero: "II" },
   { id: 3, nombre: "La Emperatriz", nombre_en: "The Empress", palo: "mayor", significado: "Abundancia, fertilidad, naturaleza. Creatividad, sensualidad, provisioning maternal.", significado_invertido: "Dependencia, carencia, bloqueo creativo. Falta de atención al cuerpo o la naturaleza.", numero: "III" },
   { id: 4, nombre: "El Emperador", nombre_en: "The Emperor", palo: "mayor", significado: "Autoridad, estructura, liderazgo. Disciplina, estabilidad, protección.", significado_invertido: "Tiranía, rigidez, abuso de poder. Falta de autoridad o exceso de control.", numero: "IV" },
-  { id: 5, nombre: "El Hierofante", nombre_en: "The Hierophant", palo: "mayor", significado: "Tradición, espiritualidad, enseñanza. Buscar guía, seguir un camino establecido.", significado_invertido: "Rebelión, unconventional, romper tradiciones. Cuestionar las normas establecidas.", numero: "V" },
+  { id: 5, nombre: "El Papa", nombre_en: "The Hierophant", palo: "mayor", significado: "Tradición, espiritualidad, enseñanza. Buscar guía, seguir un camino establecido.", significado_invertido: "Rebelión, unconventional, romper tradiciones. Cuestionar las normas establecidas.", numero: "V" },
   { id: 6, nombre: "Los Enamorados", nombre_en: "The Lovers", palo: "mayor", significado: "Amor, armonía, elección. Relaciones significativas, alineación de valores.", significado_invertido: "Desequilibrio, conflicto, mala elección. Duda en una relación importante.", numero: "VI" },
   { id: 7, nombre: "El Carro", nombre_en: "The Chariot", palo: "mayor", significado: "Victoria, determinación, voluntad. Superar obstáculos, avanzar con fuerza.", significado_invertido: "Falta de control, agresión, derrota. Perder el rumbo por exceso de fuerza.", numero: "VII" },
   { id: 8, nombre: "La Fuerza", nombre_en: "Strength", palo: "mayor", significado: "Valor, persuasión, influencia interna. Domar los impulsos, paciencia, compasión.", significado_invertido: "Debilidad, inseguridad, falta de autocontrol. Miedo a enfrentar situaciones difíciles.", numero: "VIII" },
@@ -113,8 +113,10 @@ const MAZOS = {
 // Tipos de tirada
 const TIRADAS = {
   una: { nombre: "Una Carta", cantidad: 1, descripcion: "Respuesta rápida a una pregunta" },
+  dos: { nombre: "Dos Cartas (Vínculo)", cantidad: 3, descripcion: "Vínculo — Tu energía, Su energía, Consejo" },
   tres: { nombre: "Tres Cartas", cantidad: 3, descripcion: "Pasado, Presente, Futuro" },
-  celtica: { nombre: "Celta", cantidad: 10, descripcion: "Tirada completa y detallada" },
   cruz: { nombre: "Cruz Simple", cantidad: 5, descripcion: "Situación, Obstáculo, Consejo" },
-  amor: { nombre: "Tirada del Amor", cantidad: 7, descripcion: "Relaciones y sentimientos" }
+  amor: { nombre: "Tirada del Amor", cantidad: 7, descripcion: "Relaciones y sentimientos — Solo Arcanos Mayores" },
+  celtica: { nombre: "Celta", cantidad: 10, descripcion: "Tirada completa y detallada" },
+  arbol: { nombre: "Árbol de la Vida", cantidad: 10, descripcion: "Tirada kabbalística — Los 10 Sephirot" }
 };
