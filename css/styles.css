@@ -9,10 +9,10 @@
 
 :root {
   /* Colores principales */
-  --bg-dark: #16162a;
-  --bg-card: #1a1a2e;
-  --bg-card-hover: #252540;
-  --surface: #16213e;
+  --bg-dark: #1e1e38;
+  --bg-card: #252542;
+  --bg-card-hover: #2f2f52;
+  --surface: #1e2a4a;
   
   /* Dorado místico */
   --gold: #d4af37;
@@ -551,22 +551,18 @@ body {
   line-height: 1.5;
 }
 
-/* ═══════════════ INTRO SECTION ═══════════════ */
-.intro-section {
-  margin-bottom: 1.2rem;
-}
-
-.intro-text {
+.hero-intro {
   font-family: 'Crimson Text', serif;
   font-size: 0.9rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--text-dim);
   text-align: center;
+  font-style: italic;
+  margin-top: 1.2rem;
   padding: 0.8rem 1rem;
   background: rgba(212, 175, 55, 0.04);
   border-radius: var(--radius-sm);
   border: 1px solid rgba(212, 175, 55, 0.1);
-  font-style: italic;
 }
 
 /* ═══════════════ QUICK ACTIONS ═══════════════ */
