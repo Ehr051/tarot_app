@@ -889,7 +889,7 @@ function mostrarInterpretacion() {
   html += `
     <div class="reading-combined">
       <h4>🔮 Interpretación Combinada</h4>
-      <p>${generarInterpretacionCombinada()}</p>
+      ${generarInterpretacionCombinada()}
     </div>
   `;
   
@@ -918,16 +918,261 @@ function mostrarInterpretacion() {
 function generarInterpretacionCombinada() {
   const cantidad = cartasSeleccionadas.length;
   const positions = getSpreadPositions(tiradaActual);
-  let resumen = [];
+
+  // ── Obtener elementos de cada carta ──
+  const ELEMENTOS = { copas: 'Agua', espadas: 'Aire', bastos: 'Fuego', oros: 'Tierra' };
+  const PALOS_EMOJI = { copas: '🏆', espadas: '⚔️', bastos: '🔥', oros: '💰' };
+
+  function getElemento(carta) {
+    if (carta.palo === 'mayor') {
+      const elite = [0,1,2,18,19,20];     // Aire (espíritu)
+      const watery = [3,6,14,17];          // Agua
+      const fiery = [4,7,10,11,15,16];     // Fuego
+      const earthy = [5,8,9,12,13,21];     // Tierra
+      if (elite.includes(carta.id)) return { elem: 'Aire 🌬️', desc: 'espiritual' };
+      if (watery.includes(carta.id)) return { elem: 'Agua 🌊', desc: 'emocional' };
+      if (fiery.includes(carta.id)) return { elem: 'Fuego 🔥', desc: 'transformador' };
+      if (earthy.includes(carta.id)) return { elem: 'Tierra 🌍', desc: 'material' };
+    }
+    return { elem: `${ELEMENTOS[carta.palo]} ${PALOS_EMOJI[carta.palo]}`, desc: `del palo de ${carta.palo}` };
+  }
+
+  // ── Interpretaciones por posición ──
+  const POSICION_EXTENDIDA = {
+    'Carta': 'el mensaje directo del tarot para tu pregunta, sin filtros ni rodeos.',
+    'Tu energía': 'tu estado interior actual, las vibras que estás emanando al universo.',
+    'Su energía': 'la energía de la otra persona, lo que trae a la mesa.',
+    'Consejo': 'la guía que el tarot te ofrece, el camino más sabio a seguir.',
+    'Pasado': 'las experiencias que te trajeron hasta acá, la base de tu presente.',
+    'Presente': 'tu situación actual, el momento exacto donde estás parado.',
+    'Futuro': 'hacia dónde se encamina la situación si todo sigue su curso natural.',
+    'Situación': 'el núcleo de tu consulta, lo que realmente está pasando.',
+    'Obstáculo': 'lo que se interpone en tu camino, el desafío a superar.',
+    'Resultado': 'el desenlace más probable, hacia dónde apunta todo.',
+    'Fondo': 'la energía de fondo, lo subconsciente que influye sin que lo notes.',
+    'Tú': 'vos en esta relación, lo que estás trayendo al vínculo.',
+    'Tu pareja': 'tu pareja en esta relación, su perspectiva y energía.',
+    'La relación': 'el vínculo mismo como entidad, la dinámica entre ustedes.',
+    'Deseos': 'lo que realmente querés, a veces escondido hasta de vos mismo.',
+    'Miedos': 'tus temores más profundos sobre esta relación.',
+    'Futuro juntos': 'el potencial del vínculo si trabajan en ello.',
+    'Prosperidad': 'tu situación material y financiera, el plano práctico.',
+    'Carrera': 'tu camino profesional, el trabajo y la vocación.',
+    'Bienestar': 'tu salud física y mental, el equilibrio del cuerpo y la mente.',
+    'Familia': 'el entorno familiar y tu lugar dentro de él.',
+    'Transformación': 'lo que está cambiando en vos aunque no lo veas todavía.',
+    'Crecimiento': 'la lección que esta etapa te está enseñando.',
+    'Propósito': 'tu misión más profunda, lo que viniste a hacer.',
+    'Potencial': 'lo mejor que puede pasar si alineás todo a tu favor.'
+  };
+
+  // ── Templates de conexión entre posiciones ──
+  const TEMPLATES_CONEXION = {
+    'Tu energía_Su energía': [
+      'Acá la clave está en el contraste entre vos y el otro. {carta1} muestra cómo {desc1}, mientras {carta2} refleja que {desc2}. Si se complementan, hay química. Si chocan, sabemos dónde está la grieta.',
+      'La danza entre vos y la otra persona se lee en estas dos cartas. {carta1} habla de tu energía — {desc1}. {carta2} cuenta la suya — {desc2}. La pregunta es si esas energías bailan juntas o se pisan los pies.',
+      'En toda conexión hay dos polos. Vos estás en {carta1}: {desc1}. La otra persona vibra en {carta2}: {desc2}. La magia (o el conflicto) está en cómo se encuentran esos polos.'
+    ],
+    'Pasado_Presente': [
+      'Mirando el arco entre pasado y presente: antes era {card1} — {desc1}. Hoy es {card2} — {desc2}. El hilo que une ambos momentos te está contando una historia de evolución (o de repetición).',
+      'Lo que fue {carta1} en el pasado ({desc1}) te trajo hasta {carta2} en el presente ({desc2}). No es casualidad — cada paso te preparó para el momento que estás viviendo ahora.'
+    ],
+    'Presente_Futuro': [
+      'Desde el presente {carta1} ({desc1}) hacia el futuro {carta2} ({desc2}): la trayectoria está marcada. Si el presente es la semilla, el futuro es el fruto que estás cultivando.',
+      'Hoy tenés {carta1} ({desc1}) y mañana se perfila {carta2} ({desc2}). Lo que hagas con la energía de hoy define si llegás a ese futuro o lo transformás.'
+    ],
+    'Pasado_Futuro': [
+      'El viaje completo: desde {carta1} en el pasado ({desc1}) hasta {carta2} en el futuro ({desc2}). El presente es el puente — estás exactamente donde necesitás estar para cruzar.',
+      'Lo que dejaste atrás ({carta1}, {desc1}) tiene una conexión directa con lo que viene ({carta2}, {desc2}). El universo no hace saltos, todo está hilado.'
+    ],
+    'Situación_Obstáculo': [
+      'La situación es {carta1} ({desc1}), y lo que se atraviesa es {carta2} ({desc2}). El obstáculo no está ahí para frenarte — está para mostrarte qué necesitás fortalecer.',
+      'Frente a {carta1} ({desc1}), aparece {carta2} ({desc2}) como desafío. El tarot te dice: el problema también es parte del camino, no lo esquives.'
+    ],
+    'Situación_Consejo': [
+      'Frente a la situación {carta1} ({desc1}), el consejo de las cartas es {carta2} ({desc2}). No hay mejor guía que esta combinación — mirá la realidad con claridad y escuchá la voz que te dice hacia dónde ir.',
+      'Las cartas te muestran el escenario ({carta1}, {desc1}) y también te dan la salida ({carta2}, {desc2}). No te dejaron solo — tenés el diagnóstico y el remedio.'
+    ],
+    'Obstáculo_Consejo': [
+      'El obstáculo {carta1} ({desc1}) se resuelve con {carta2} ({desc2}). La solución no es mágica: es entender qué te está frenando y aplicar exactamente la energía opuesta.',
+      'La fricción que sentís ({carta1}, {desc1}) tiene su antídoto en {carta2} ({desc2}). Prestá atención a ese contraste, ahí está tu respuesta.'
+    ],
+    'default': [
+      '{carta1} aparece junto a {carta2} en esta lectura. Una le habla de {desc1}, la otra de {desc2}. La conversación entre ambas cartas es el verdadero mensaje — escuchá lo que se dicen.',
+      'Las cartas siempre dialogan entre sí. {carta1} ({desc1}) y {carta2} ({desc2}) están conversando en esta tirada. Tu tarea es encontrar qué se están diciendo.',
+      'Cuando {carta1} y {carta2} aparecen juntas, se potencian mutuamente. {desc1} y {desc2} se entrelazan para darte una perspectiva más completa.'
+    ]
+  };
+
+  // ── Frases de cierre según cantidad de cartas ──
+  const CIERRES = {
+    1: [
+      'Esta carta es un espejo. Mirá bien lo que refleja porque la respuesta ya está ahí, nítida.',
+      'El tarot te habla con una sola voz hoy. No hace falta más — escuchá lo que esta carta tiene para decirte.',
+      'Acá no hay vueltas. Una carta, un mensaje directo al corazón.'
+    ],
+    2: [
+      'Entre estas dos cartas está la conversación que necesitás tener con vos mismo. Prestá atención al diálogo.',
+      'Dos cartas, dos fuerzas. La verdad está en cómo se relacionan.',
+      'En la tensión entre estas dos cartas se esconde la respuesta que buscás.'
+    ],
+    3: [
+      'Tres cartas, tres actos. Esta tirada cuenta una historia con principio, nudo y desenlace.',
+      'El pasado, presente y futuro se alinearon para mostrarte el arco completo. La película de tu consulta se proyecta acá.',
+      'Con tres cartas el tarot te da la cronología del alma: cómo llegaste, dónde estás y hacia dónde vas.'
+    ],
+    'muchas': [
+      'Una tirada completa como esta te da una visión panorámica. No te pierdas en los detalles — mirá el mapa completo.',
+      'Cuantas más cartas, más rica la conversación. Pero no te abrumes: el mensaje principal está en el patrón que forman, no en cada carta por separado.',
+      'Las cartas se despliegan como un abanico de posibilidades. Buscá el hilo rojo que las une: ahí está tu mensaje.'
+    ]
+  };
+
+  // ── Interpretación elemental ──
+  const INTERACCIONES_ELEMENTALES = {
+    'Fuego_Fuego': 'Dos fuerzas de Fuego juntas: pasión que puede ser creativa o destructiva. Hay impulso, pero cuidado con quemarse.',
+    'Fuego_Agua': 'Fuego y Agua: vapor o conflicto. La pasión encuentra a la emoción. Puede generar una conexión intensa o apagar la llama.',
+    'Fuego_Aire': 'Fuego y Aire: el viento aviva las llamas. Las ideas y la acción se potencian. Momento de ejecutar planes.',
+    'Fuego_Tierra': 'Fuego y Tierra: calor que fecunda la tierra. La pasión se vuelve productiva. Ideal para proyectos materiales.',
+    'Agua_Agua': 'Dos Aguas juntas: sensibilidad al cuadrado. Mucha intuición y emoción, pero cuidado con ahogarse en sentimientos.',
+    'Agua_Aire': 'Agua y Aire: tormenta o brisa. Las emociones se encuentran con la mente. Puede traer claridad emocional o confusión.',
+    'Agua_Tierra': 'Agua y Tierra: el agua nutre la tierra. Las emociones encuentran la estabilidad material. Muy fértil para proyectos.',
+    'Aire_Aire': 'Dos Aires juntos: mucho pensamiento, poca acción. Las ideas vuelan pero necesitan aterrizar.',
+    'Aire_Tierra': 'Aire y Tierra: las ideas se materializan. Buen momento para planificar y estructurar proyectos.',
+    'Tierra_Tierra': 'Dos Tierras: estabilidad sólida o estancamiento. Hay base material, pero cuidado con la rigidez.'
+  };
+
+  function getInteraccionElemental(elem1, elem2) {
+    const e1 = elem1.split(' ')[0];
+    const e2 = elem2.split(' ')[0];
+    const key = [e1, e2].sort().join('_');
+    const keyInv = [e1, e2].sort() === [e1, e2].sort() ? key : [e2, e1].join('_');
+    return INTERACCIONES_ELEMENTALES[keyInv] || INTERACCIONES_ELEMENTALES[key];
+  }
+
+  function pickRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function getDescPosition(label) {
+    return POSICION_EXTENDIDA[label] || 'una energía importante en tu vida.';
+  }
+
+  function getPaloDesc(carta) {
+    if (carta.palo === 'mayor') return 'un Arcano Mayor — lección de vida grande';
+    const paloInfo = PALOS[carta.palo];
+    if (!paloInfo) return 'una carta importante';
+    return `del ${paloInfo.nombre} (${paloInfo.elemento}) — ${paloInfo.significado}`;
+  }
+
+  function getCartaTone(carta) {
+    const id = carta.id;
+    const ideales = [19, 21, 30, 31, 55, 72, 77];  // cartas positivas
+    const duras = [15, 16, 38, 44, 45, 54, 68];     // cartas desafiantes
+    if (ideales.includes(id)) return 'positiva';
+    if (duras.includes(id)) return 'desafiante';
+    return 'neutral';
+  }
+
+  // ── Construir interpretación ──
+  const partes = [];
+
+  // Resumen inicial con posición extendida
   for (let i = 0; i < cantidad; i++) {
     const carta = cartasEnMazo[cartasSeleccionadas[i]];
-    const label = positions[i] ? positions[i].label : `Extra ${i - TIRADAS[tiradaActual].cantidad + 1}`;
-    resumen.push(`${label}: ${carta.nombre}`);
+    const pos = positions[i] || { label: `Extra ${i - TIRADAS[tiradaActual].cantidad + 1}` };
+    const elem = getElemento(carta);
+    const tone = getCartaTone(carta);
+    const emojiTone = tone === 'positiva' ? '✨' : tone === 'desafiante' ? '⚠️' : '📜';
+    
+    partes.push(
+      `<div class="lectura-posicion">
+        <span class="lectura-posicion-label">${pos.label}</span>
+        <span class="lectura-posicion-contexto">— ${getDescPosition(pos.label)}</span>
+        <div class="lectura-posicion-carta">
+          <span class="lectura-carta-nombre">${emojiTone} ${carta.nombre}</span>
+          <span class="lectura-carta-significado">${getSignificado(carta.id, mazoActual)}</span>
+          <span class="lectura-carta-elemento">Elemento: ${elem.elem}</span>
+        </div>
+      </div>`
+    );
   }
-  return `Esta tirada combina: ${resumen.join(', ')}. ` +
-    `La narrativa general surge de cómo estas cartas se relacionan entre sí, ` +
-    `creando una historia única para tu consulta. Reflexioná sobre el mensaje ` +
-    `de cada posición y cómo se conectan entre ellas.`;
+
+  // Conexiones entre posiciones cercanas (no todas, para no abrumar)
+  const conexiones = [];
+  for (let i = 0; i < Math.min(cantidad, 4); i++) {
+    for (let j = i + 1; j < Math.min(cantidad, 4); j++) {
+      if (j - i > 2) continue; // solo pares cercanos
+      const c1 = cartasEnMazo[cartasSeleccionadas[i]];
+      const c2 = cartasEnMazo[cartasSeleccionadas[j]];
+      const l1 = positions[i]?.label || '';
+      const l2 = positions[j]?.label || '';
+      const key = `${l1}_${l2}`;
+      const keyRev = `${l2}_${l1}`;
+      const templates = TEMPLATES_CONEXION[key] || TEMPLATES_CONEXION[keyRev] || TEMPLATES_CONEXION['default'];
+      const tmpl = pickRandom(templates);
+      const desc1 = getSignificado(c1.id, mazoActual).split('.')[0].toLowerCase();
+      const desc2 = getSignificado(c2.id, mazoActual).split('.')[0].toLowerCase();
+
+      conexiones.push({
+        pares: `${l1} + ${l2}`,
+        texto: tmpl
+          .replace('{carta1}', `<strong>${c1.nombre}</strong>`)
+          .replace('{carta2}', `<strong>${c2.nombre}</strong>`)
+          .replace('{card1}', `<strong>${c1.nombre}</strong>`)
+          .replace('{card2}', `<strong>${c2.nombre}</strong>`)
+          .replace('{desc1}', desc1)
+          .replace('{desc2}', desc2)
+      });
+    }
+  }
+
+  // Resumen elemental si hay al menos 2 cartas
+  let textoElemental = '';
+  if (cantidad >= 2) {
+    const elem1 = getElemento(cartasEnMazo[cartasSeleccionadas[0]]);
+    const elem2 = getElemento(cartasEnMazo[cartasSeleccionadas[Math.min(1, cantidad - 1)]]);
+    const interElem = getInteraccionElemental(elem1.elem, elem2.elem);
+    if (interElem) {
+      textoElemental = `<div class="lectura-elemental">
+        <span class="lectura-elemental-title">⚡ Dinámica elemental</span>
+        <p>${interElem}</p>
+      </div>`;
+    }
+  }
+
+  // Frase de cierre
+  let cierreKey = 'many';
+  if (cantidad === 1) cierreKey = 1;
+  else if (cantidad === 2) cierreKey = 2;
+  else if (cantidad === 3) cierreKey = 3;
+  else cierreKey = 'muchas';
+  const cierre = pickRandom(CIERRES[cierreKey]);
+
+  // Armar HTML final
+  let html = `<div class="lectura-combinada">`;
+
+  // Conexiones
+  if (conexiones.length > 0) {
+    html += `<h4 class="lectura-conexiones-title">🔗 Cómo se conectan las posiciones</h4>`;
+    conexiones.forEach(c => {
+      html += `<div class="lectura-conexion">
+        <span class="lectura-conexion-par">${c.pares}</span>
+        <p>${c.texto}</p>
+      </div>`;
+    });
+  }
+
+  // Interpretación elemental
+  if (textoElemental) html += textoElemental;
+
+  // Consejo final
+  html += `<div class="lectura-consejo-final">
+    <span class="lectura-consejo-title">💫 Mensaje final</span>
+    <p>${cierre}</p>
+  </div>`;
+
+  html += `</div>`;
+
+  return html;
 }
 
 function seguirTirando() {

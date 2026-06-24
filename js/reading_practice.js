@@ -218,7 +218,16 @@ function generarOpcionesDinamicas(cartas, invertidas, tipo) {
         return part;
       }).join('. ');
       // Agregar interpretación de conexión
-      texto += `. Conexión: ${significadosArr[0].carta?.nombre} ${invertidasArr[0] ? 'rebota' : 'proyecta'} sobre ${significadosArr[1].carta?.nombre}`;
+      const c1 = significadosArr[0].carta;
+      const c2 = significadosArr[1].carta;
+      const inv1 = invertidasArr[0];
+      const inv2 = invertidasArr[1];
+      const templatesConexion = [
+        `Conexión entre ${labels[0]} y ${labels[1]}: ${c1?.nombre} se encuentra con ${c2?.nombre}. ${c1?.nombre} ${inv1 ? 'viene con energía bloqueada, necesita ser liberada antes de' : 'fluye hacia'} ${c2?.nombre}, que ${inv2 ? 'pide revisión interna' : 'responde con claridad'}. La dinámica te pide observar cómo se complementan o desafían.`,
+        `${labels[0]} y ${labels[1]} dialogan: ${c1?.nombre} ${inv1 ? 'en modo sombra' : 'en plena luz'} y ${c2?.nombre} ${inv2 ? 'en modo sombra' : 'en plena luz'}. La lectura te invita a ver la relación entre estas dos energías y cómo se influyen mutuamente.`,
+        `Vínculo entre posiciones: mientras ${c1?.nombre} representa ${inv1 ? 'un aspecto que hoy está bloqueado o mirando hacia adentro' : 'una energía activa y disponible'}, ${c2?.nombre} aparece como ${inv2 ? 'una lección que mirar con cuidado' : 'una fuerza que acompaña'}. La conexión entre ambas es el mensaje más profundo de esta lectura.`
+      ];
+      texto += `. ${templatesConexion[Math.floor(Math.random() * templatesConexion.length)]}`;
     } else {
       texto = significadosArr.map((s, i) => {
         let part = `${labels[i]}: ${s.carta?.nombre} — ${s.significado.split('.')[0]}`;
