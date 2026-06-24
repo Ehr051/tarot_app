@@ -476,6 +476,24 @@ function setupDeckSelector() {
       document.querySelectorAll('.deck-option').forEach(b => b.classList.remove('activo'));
       btn.classList.add('activo');
       mazoActual = btn.dataset.deck;
+      // Si estamos en la pantalla de tirada, re-generar el abanico con el nuevo mazo
+      const pantallaTirada = document.getElementById('pantalla-tirada');
+      if (pantallaTirada && pantallaTirada.classList.contains('activa')) {
+        cartasEnMazo = shuffleArray([...TODAS_LAS_CARTAS]);
+        cartasSeleccionadas = [];
+        const fanContainer = document.getElementById('fan-cards');
+        const totalCards = 28;
+        const backSVG = getCardBackSVG(mazoActual);
+        animarBarajado(fanContainer, backSVG, () => {
+          desplegarFanTirada(fanContainer, totalCards, backSVG);
+        });
+        // Resetear resultado de lectura
+        const resultDiv = document.getElementById('reading-result');
+        if (resultDiv) {
+          resultDiv.classList.remove('visible');
+          resultDiv.innerHTML = '';
+        }
+      }
       showToast(`Mazo: ${MAZOS[mazoActual].nombre}`);
     });
   });
@@ -886,9 +904,10 @@ function mostrarInterpretacion() {
     `;
   }
   
+  const tituloInterpretacion = cantidad === 1 ? '🔮 Interpretación' : '🔮 Interpretación Combinada';
   html += `
     <div class="reading-combined">
-      <h4>🔮 Interpretación Combinada</h4>
+      <h4>${tituloInterpretacion}</h4>
       ${generarInterpretacionCombinada()}
     </div>
   `;

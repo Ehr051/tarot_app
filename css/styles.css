@@ -461,8 +461,8 @@ body {
 .main-aprendizaje,
 .main-perfil {
   flex: 1;
-  padding: 1.5rem 1rem;
-  max-width: 600px;
+  padding: 1.5rem 1.2rem;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -539,7 +539,7 @@ body {
 
 .hero-title {
   font-family: 'Cinzel', serif;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   color: var(--gold);
   margin-bottom: 0.5rem;
   letter-spacing: 0.1em;
@@ -547,14 +547,14 @@ body {
 
 .hero-desc {
   color: var(--text-dim);
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
 .hero-intro {
   font-family: 'Crimson Text', serif;
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.8;
   color: var(--text-dim);
   text-align: center;
   font-style: italic;
@@ -1191,15 +1191,15 @@ body {
 }
 
 .reading-card-position {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
 .reading-card-meaning {
   color: var(--text-dim);
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* ── Lectura Combinada ── */
