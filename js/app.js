@@ -753,6 +753,7 @@ function seleccionarCarta(index) {
       revelarTodasLasCartas();
     }, 500);
   }
+  actualizarEstadoExtraSlot();
 }
 
 // ═══════════════ TABLERO DE TIRADA ═══════════════
@@ -773,6 +774,38 @@ function prepararTablero(cantidad) {
     `;
     board.appendChild(slot);
   });
+
+  // Slot extra para seguir tirando
+  const extraSlot = document.createElement('div');
+  extraSlot.className = 'spread-extra-slot';
+  extraSlot.id = 'spread-extra-slot';
+  extraSlot.innerHTML = `
+    <span class="spread-extra-icon">+</span>
+    <span class="spread-extra-text">Agregar carta</span>
+  `;
+  /* <span class="spread-extra-icon">+</span>
+    <span class="spread-extra-text">Agregar carta</span> */
+  extraSlot.onclick = () => {
+    if (cartasSeleccionadas.length < TIRADAS[tiradaActual].cantidad) {
+      showToast('Primero completá la selección inicial');
+      return;
+    }
+    seguirTirando();
+  };
+  board.appendChild(extraSlot);
+  actualizarEstadoExtraSlot();
+}
+
+function actualizarEstadoExtraSlot() {
+  const extraSlot = document.getElementById('spread-extra-slot');
+  if (!extraSlot) return;
+  if (cartasSeleccionadas.length >= TIRADAS[tiradaActual].cantidad && cartasSeleccionadas.length < 28) {
+    extraSlot.classList.add('listo');
+  } else if (cartasSeleccionadas.length >= 28) {
+    extraSlot.style.display = 'none';
+  } else {
+    extraSlot.classList.remove('listo');
+  }
 }
 
 function getSpreadPositions(tipo) {
@@ -912,15 +945,6 @@ function mostrarInterpretacion() {
     </div>
   `;
   
-  if (cartasSeleccionadas.length < 10) {
-    const restantes = 28 - cartasSeleccionadas.length;
-    html += `
-      <button class="btn-secondary" onclick="seguirTirando()" style="margin-top: 1rem;">
-        ✚ Seguir tirando una carta más
-      </button>
-    `;
-  }
-  
   html += `
     <button class="btn-primary" onclick="guardarLectura()" style="margin-top: 0.5rem;">
       💾 Guardar Lectura
@@ -938,259 +962,205 @@ function generarInterpretacionCombinada() {
   const cantidad = cartasSeleccionadas.length;
   const positions = getSpreadPositions(tiradaActual);
 
-  // ── Obtener elementos de cada carta ──
-  const ELEMENTOS = { copas: 'Agua', espadas: 'Aire', bastos: 'Fuego', oros: 'Tierra' };
-  const PALOS_EMOJI = { copas: '🏆', espadas: '⚔️', bastos: '🔥', oros: '💰' };
-
-  function getElemento(carta) {
-    if (carta.palo === 'mayor') {
-      const elite = [0,1,2,18,19,20];     // Aire (espíritu)
-      const watery = [3,6,14,17];          // Agua
-      const fiery = [4,7,10,11,15,16];     // Fuego
-      const earthy = [5,8,9,12,13,21];     // Tierra
-      if (elite.includes(carta.id)) return { elem: 'Aire 🌬️', desc: 'espiritual' };
-      if (watery.includes(carta.id)) return { elem: 'Agua 🌊', desc: 'emocional' };
-      if (fiery.includes(carta.id)) return { elem: 'Fuego 🔥', desc: 'transformador' };
-      if (earthy.includes(carta.id)) return { elem: 'Tierra 🌍', desc: 'material' };
-    }
-    return { elem: `${ELEMENTOS[carta.palo]} ${PALOS_EMOJI[carta.palo]}`, desc: `del palo de ${carta.palo}` };
+  function getFirstMeaning(carta) {
+    const sig = getSignificado(carta.id, mazoActual).split('.')[0].toLowerCase();
+    return sig.charAt(0).toUpperCase() + sig.slice(1);
   }
 
-  // ── Interpretaciones por posición ──
-  const POSICION_EXTENDIDA = {
-    'Carta': 'el mensaje directo del tarot para tu pregunta, sin filtros ni rodeos.',
-    'Tu energía': 'tu estado interior actual, las vibras que estás emanando al universo.',
-    'Su energía': 'la energía de la otra persona, lo que trae a la mesa.',
-    'Consejo': 'la guía que el tarot te ofrece, el camino más sabio a seguir.',
-    'Pasado': 'las experiencias que te trajeron hasta acá, la base de tu presente.',
-    'Presente': 'tu situación actual, el momento exacto donde estás parado.',
-    'Futuro': 'hacia dónde se encamina la situación si todo sigue su curso natural.',
-    'Situación': 'el núcleo de tu consulta, lo que realmente está pasando.',
-    'Obstáculo': 'lo que se interpone en tu camino, el desafío a superar.',
-    'Resultado': 'el desenlace más probable, hacia dónde apunta todo.',
-    'Fondo': 'la energía de fondo, lo subconsciente que influye sin que lo notes.',
-    'Tú': 'vos en esta relación, lo que estás trayendo al vínculo.',
-    'Tu pareja': 'tu pareja en esta relación, su perspectiva y energía.',
-    'La relación': 'el vínculo mismo como entidad, la dinámica entre ustedes.',
-    'Deseos': 'lo que realmente querés, a veces escondido hasta de vos mismo.',
-    'Miedos': 'tus temores más profundos sobre esta relación.',
-    'Futuro juntos': 'el potencial del vínculo si trabajan en ello.',
-    'Prosperidad': 'tu situación material y financiera, el plano práctico.',
-    'Carrera': 'tu camino profesional, el trabajo y la vocación.',
-    'Bienestar': 'tu salud física y mental, el equilibrio del cuerpo y la mente.',
-    'Familia': 'el entorno familiar y tu lugar dentro de él.',
-    'Transformación': 'lo que está cambiando en vos aunque no lo veas todavía.',
-    'Crecimiento': 'la lección que esta etapa te está enseñando.',
-    'Propósito': 'tu misión más profunda, lo que viniste a hacer.',
-    'Potencial': 'lo mejor que puede pasar si alineás todo a tu favor.'
-  };
-
-  // ── Templates de conexión entre posiciones ──
-  const TEMPLATES_CONEXION = {
-    'Tu energía_Su energía': [
-      'Acá la clave está en el contraste entre vos y el otro. {carta1} muestra cómo {desc1}, mientras {carta2} refleja que {desc2}. Si se complementan, hay química. Si chocan, sabemos dónde está la grieta.',
-      'La danza entre vos y la otra persona se lee en estas dos cartas. {carta1} habla de tu energía — {desc1}. {carta2} cuenta la suya — {desc2}. La pregunta es si esas energías bailan juntas o se pisan los pies.',
-      'En toda conexión hay dos polos. Vos estás en {carta1}: {desc1}. La otra persona vibra en {carta2}: {desc2}. La magia (o el conflicto) está en cómo se encuentran esos polos.'
-    ],
-    'Pasado_Presente': [
-      'Mirando el arco entre pasado y presente: antes era {card1} — {desc1}. Hoy es {card2} — {desc2}. El hilo que une ambos momentos te está contando una historia de evolución (o de repetición).',
-      'Lo que fue {carta1} en el pasado ({desc1}) te trajo hasta {carta2} en el presente ({desc2}). No es casualidad — cada paso te preparó para el momento que estás viviendo ahora.'
-    ],
-    'Presente_Futuro': [
-      'Desde el presente {carta1} ({desc1}) hacia el futuro {carta2} ({desc2}): la trayectoria está marcada. Si el presente es la semilla, el futuro es el fruto que estás cultivando.',
-      'Hoy tenés {carta1} ({desc1}) y mañana se perfila {carta2} ({desc2}). Lo que hagas con la energía de hoy define si llegás a ese futuro o lo transformás.'
-    ],
-    'Pasado_Futuro': [
-      'El viaje completo: desde {carta1} en el pasado ({desc1}) hasta {carta2} en el futuro ({desc2}). El presente es el puente — estás exactamente donde necesitás estar para cruzar.',
-      'Lo que dejaste atrás ({carta1}, {desc1}) tiene una conexión directa con lo que viene ({carta2}, {desc2}). El universo no hace saltos, todo está hilado.'
-    ],
-    'Situación_Obstáculo': [
-      'La situación es {carta1} ({desc1}), y lo que se atraviesa es {carta2} ({desc2}). El obstáculo no está ahí para frenarte — está para mostrarte qué necesitás fortalecer.',
-      'Frente a {carta1} ({desc1}), aparece {carta2} ({desc2}) como desafío. El tarot te dice: el problema también es parte del camino, no lo esquives.'
-    ],
-    'Situación_Consejo': [
-      'Frente a la situación {carta1} ({desc1}), el consejo de las cartas es {carta2} ({desc2}). No hay mejor guía que esta combinación — mirá la realidad con claridad y escuchá la voz que te dice hacia dónde ir.',
-      'Las cartas te muestran el escenario ({carta1}, {desc1}) y también te dan la salida ({carta2}, {desc2}). No te dejaron solo — tenés el diagnóstico y el remedio.'
-    ],
-    'Obstáculo_Consejo': [
-      'El obstáculo {carta1} ({desc1}) se resuelve con {carta2} ({desc2}). La solución no es mágica: es entender qué te está frenando y aplicar exactamente la energía opuesta.',
-      'La fricción que sentís ({carta1}, {desc1}) tiene su antídoto en {carta2} ({desc2}). Prestá atención a ese contraste, ahí está tu respuesta.'
-    ],
-    'default': [
-      '{carta1} aparece junto a {carta2} en esta lectura. Una le habla de {desc1}, la otra de {desc2}. La conversación entre ambas cartas es el verdadero mensaje — escuchá lo que se dicen.',
-      'Las cartas siempre dialogan entre sí. {carta1} ({desc1}) y {carta2} ({desc2}) están conversando en esta tirada. Tu tarea es encontrar qué se están diciendo.',
-      'Cuando {carta1} y {carta2} aparecen juntas, se potencian mutuamente. {desc1} y {desc2} se entrelazan para darte una perspectiva más completa.'
-    ]
-  };
-
-  // ── Frases de cierre según cantidad de cartas ──
-  const CIERRES = {
-    1: [
-      'Esta carta es un espejo. Mirá bien lo que refleja porque la respuesta ya está ahí, nítida.',
-      'El tarot te habla con una sola voz hoy. No hace falta más — escuchá lo que esta carta tiene para decirte.',
-      'Acá no hay vueltas. Una carta, un mensaje directo al corazón.'
-    ],
-    2: [
-      'Entre estas dos cartas está la conversación que necesitás tener con vos mismo. Prestá atención al diálogo.',
-      'Dos cartas, dos fuerzas. La verdad está en cómo se relacionan.',
-      'En la tensión entre estas dos cartas se esconde la respuesta que buscás.'
-    ],
-    3: [
-      'Tres cartas, tres actos. Esta tirada cuenta una historia con principio, nudo y desenlace.',
-      'El pasado, presente y futuro se alinearon para mostrarte el arco completo. La película de tu consulta se proyecta acá.',
-      'Con tres cartas el tarot te da la cronología del alma: cómo llegaste, dónde estás y hacia dónde vas.'
-    ],
-    'muchas': [
-      'Una tirada completa como esta te da una visión panorámica. No te pierdas en los detalles — mirá el mapa completo.',
-      'Cuantas más cartas, más rica la conversación. Pero no te abrumes: el mensaje principal está en el patrón que forman, no en cada carta por separado.',
-      'Las cartas se despliegan como un abanico de posibilidades. Buscá el hilo rojo que las une: ahí está tu mensaje.'
-    ]
-  };
-
-  // ── Interpretación elemental ──
-  const INTERACCIONES_ELEMENTALES = {
-    'Fuego_Fuego': 'Dos fuerzas de Fuego juntas: pasión que puede ser creativa o destructiva. Hay impulso, pero cuidado con quemarse.',
-    'Fuego_Agua': 'Fuego y Agua: vapor o conflicto. La pasión encuentra a la emoción. Puede generar una conexión intensa o apagar la llama.',
-    'Fuego_Aire': 'Fuego y Aire: el viento aviva las llamas. Las ideas y la acción se potencian. Momento de ejecutar planes.',
-    'Fuego_Tierra': 'Fuego y Tierra: calor que fecunda la tierra. La pasión se vuelve productiva. Ideal para proyectos materiales.',
-    'Agua_Agua': 'Dos Aguas juntas: sensibilidad al cuadrado. Mucha intuición y emoción, pero cuidado con ahogarse en sentimientos.',
-    'Agua_Aire': 'Agua y Aire: tormenta o brisa. Las emociones se encuentran con la mente. Puede traer claridad emocional o confusión.',
-    'Agua_Tierra': 'Agua y Tierra: el agua nutre la tierra. Las emociones encuentran la estabilidad material. Muy fértil para proyectos.',
-    'Aire_Aire': 'Dos Aires juntos: mucho pensamiento, poca acción. Las ideas vuelan pero necesitan aterrizar.',
-    'Aire_Tierra': 'Aire y Tierra: las ideas se materializan. Buen momento para planificar y estructurar proyectos.',
-    'Tierra_Tierra': 'Dos Tierras: estabilidad sólida o estancamiento. Hay base material, pero cuidado con la rigidez.'
-  };
-
-  function getInteraccionElemental(elem1, elem2) {
-    const e1 = elem1.split(' ')[0];
-    const e2 = elem2.split(' ')[0];
-    const key = [e1, e2].sort().join('_');
-    const keyInv = [e1, e2].sort() === [e1, e2].sort() ? key : [e2, e1].join('_');
-    return INTERACCIONES_ELEMENTALES[keyInv] || INTERACCIONES_ELEMENTALES[key];
+  function getShortPalo(carta) {
+    if (carta.palo === 'mayor') return 'arcano mayor';
+    return PALOS[carta.palo]?.nombre?.toLowerCase() || 'carta';
   }
 
   function pickRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-  function getDescPosition(label) {
-    return POSICION_EXTENDIDA[label] || 'una energía importante en tu vida.';
+  function groupCards(indices) {
+    return indices.map(i => ({
+      carta: cartasEnMazo[cartasSeleccionadas[i]],
+      pos: positions[i] || { label: `Extra ${i + 1}` }
+    }));
   }
 
-  function getPaloDesc(carta) {
-    if (carta.palo === 'mayor') return 'un Arcano Mayor — lección de vida grande';
-    const paloInfo = PALOS[carta.palo];
-    if (!paloInfo) return 'una carta importante';
-    return `del ${paloInfo.nombre} (${paloInfo.elemento}) — ${paloInfo.significado}`;
+  function analyzeGroup(items) {
+    const palos = items.map(i => i.carta.palo);
+    const mayor = palos.filter(p => p === 'mayor').length;
+    const minor = palos.filter(p => p !== 'mayor').length;
+    const dominante = palos.filter(p => p !== 'mayor').sort((a,b) =>
+      palos.filter(p => p === a).length - palos.filter(p => p === b).length
+    ).pop() || 'mayor';
+    return { total: items.length, mayor, minor, dominante, palos };
   }
 
-  function getCartaTone(carta) {
-    const id = carta.id;
-    const ideales = [19, 21, 30, 31, 55, 72, 77];  // cartas positivas
-    const duras = [15, 16, 38, 44, 45, 54, 68];     // cartas desafiantes
-    if (ideales.includes(id)) return 'positiva';
-    if (duras.includes(id)) return 'desafiante';
-    return 'neutral';
+  // ── 1 Carta ──
+  if (cantidad === 1) {
+    const c = cartasEnMazo[cartasSeleccionadas[0]];
+    const pos = positions[0]?.label || 'Carta';
+    const sig = getSignificado(c.id, mazoActual);
+    const tipo = getShortPalo(c);
+    const frases = [
+      `Esta es tu respuesta. Directa, sin vueltas. ${c.nombre} aparece para decirte algo puntual: ${sig} No hay más cartas que la maticen — esto es lo que necesitás escuchar hoy.`,
+      `${c.nombre} es la voz del tarot para vos en este momento. Como ${tipo}, trae una energía específica: ${sig} Prestá atención, porque cuando una sola carta aparece, su mensaje es urgente.`,
+      `Una carta, un mensaje. ${c.nombre} ocupa la posición de "${pos}" y te dice: ${sig} El resto depende de cómo recibas este mensaje.`
+    ];
+    return pickRandom(frases);
   }
 
-  // ── Construir interpretación ──
-  const partes = [];
+  // ── 2 CARTAS ──
+  if (cantidad === 2) {
+    const items = groupCards([0, 1]);
+    const [a, b] = items;
+    const sigA = getFirstMeaning(a.carta);
+    const sigB = getFirstMeaning(b.carta);
+    const frases = [
+      `${a.pos.label} (${a.carta.nombre}) y ${b.pos.label} (${b.carta.nombre}) dialogan. Una te muestra ${sigA.toLowerCase()}. La otra te habla de ${sigB.toLowerCase()}. La lectura te pide que mires cómo se relacionan estas dos áreas de tu vida.`,
+      `Dos cartas, dos fuerzas. ${a.carta.nombre} en ${a.pos.label} trae ${sigA.toLowerCase()}. ${b.carta.nombre} en ${b.pos.label} responde con ${sigB.toLowerCase()}. El mensaje no está en cada carta por separado — está en el puente entre ellas.`
+    ];
+    return pickRandom(frases);
+  }
 
-  // Resumen inicial con posición extendida
+  // ── 3 CARTAS ──
+  if (cantidad === 3) {
+    const items = groupCards([0, 1, 2]);
+    const [a, b, c] = items;
+    const sigA = getFirstMeaning(a.carta);
+    const sigB = getFirstMeaning(b.carta);
+    const sigC = getFirstMeaning(c.carta);
+    const tipoA = getShortPalo(a.carta);
+    const tipoB = getShortPalo(b.carta);
+    const tipoC = getShortPalo(c.carta);
+    const frases = [
+      `Tres cartas que se leen como una historia de tres actos. Arranca con ${a.carta.nombre} en ${a.pos.label}: ${sigA.toLowerCase()}. En el medio, ${b.carta.nombre} en ${b.pos.label}: ${sigB.toLowerCase()}. Cierra ${c.carta.nombre} en ${c.pos.label}: ${sigC.toLowerCase()}. El arco completo va desde lo que ya pasó hasta lo que se viene, pasando por el momento clave que estás viviendo ahora.`,
+      `Esta tirada de tres te cuenta el antes, el durante y el después. ${a.carta.nombre} (${a.pos.label}, ${tipoA}) marca ${sigA.toLowerCase()}. ${b.carta.nombre} (${b.pos.label}, ${tipoB}) muestra ${sigB.toLowerCase()}. ${c.carta.nombre} (${c.pos.label}, ${tipoC}) anticipa ${sigC.toLowerCase()}. La evolución entre estas tres posiciones es tu mapa.`
+    ];
+    return pickRandom(frases);
+  }
+
+  // ── 4+ CARTAS: NARRATIVA EN 3 ACTOS ──
+  const todos = [];
   for (let i = 0; i < cantidad; i++) {
     const carta = cartasEnMazo[cartasSeleccionadas[i]];
-    const pos = positions[i] || { label: `Extra ${i - TIRADAS[tiradaActual].cantidad + 1}` };
-    const elem = getElemento(carta);
-    const tone = getCartaTone(carta);
-    const emojiTone = tone === 'positiva' ? '✨' : tone === 'desafiante' ? '⚠️' : '📜';
+    const pos = positions[i] || { label: `Extra ${i + 1}` };
+    const sig = getSignificado(carta.id, mazoActual);
+    const sigShort = sig.split('.')[0];
+    todos.push({ carta, pos, sig, sigShort });
+  }
+
+  // Dividir en 3 actos
+  const total = todos.length;
+  const actSize = Math.ceil(total / 3);
+  const actos = [];
+  for (let a = 0; a < 3; a++) {
+    const start = a * actSize;
+    const end = Math.min(start + actSize, total);
+    if (start < total) actos.push(todos.slice(start, end));
+  }
+
+  function generarActo(items, idx) {
+    const nombres = items.map(i => `<strong>${i.carta.nombre}</strong>`);
+    const significados = items.map(i => i.sigShort);
+    const posiciones = items.map(i => i.pos.label).join(', ');
     
-    partes.push(
-      `<div class="lectura-posicion">
-        <span class="lectura-posicion-label">${pos.label}</span>
-        <span class="lectura-posicion-contexto">— ${getDescPosition(pos.label)}</span>
-        <div class="lectura-posicion-carta">
-          <span class="lectura-carta-nombre">${emojiTone} ${carta.nombre}</span>
-          <span class="lectura-carta-significado">${getSignificado(carta.id, mazoActual)}</span>
-          <span class="lectura-carta-elemento">Elemento: ${elem.elem}</span>
-        </div>
-      </div>`
-    );
-  }
+    const analisis = analyzeGroup(items.map(i => ({ carta: i.carta, pos: i.pos })));
+    const hayMayor = items.some(i => i.carta.palo === 'mayor');
+    const hayMenor = items.some(i => i.carta.palo !== 'mayor');
 
-  // Conexiones entre posiciones cercanas (no todas, para no abrumar)
-  const conexiones = [];
-  for (let i = 0; i < Math.min(cantidad, 4); i++) {
-    for (let j = i + 1; j < Math.min(cantidad, 4); j++) {
-      if (j - i > 2) continue; // solo pares cercanos
-      const c1 = cartasEnMazo[cartasSeleccionadas[i]];
-      const c2 = cartasEnMazo[cartasSeleccionadas[j]];
-      const l1 = positions[i]?.label || '';
-      const l2 = positions[j]?.label || '';
-      const key = `${l1}_${l2}`;
-      const keyRev = `${l2}_${l1}`;
-      const templates = TEMPLATES_CONEXION[key] || TEMPLATES_CONEXION[keyRev] || TEMPLATES_CONEXION['default'];
-      const tmpl = pickRandom(templates);
-      const desc1 = getSignificado(c1.id, mazoActual).split('.')[0].toLowerCase();
-      const desc2 = getSignificado(c2.id, mazoActual).split('.')[0].toLowerCase();
+    let mensajes = '';
 
-      conexiones.push({
-        pares: `${l1} + ${l2}`,
-        texto: tmpl
-          .replace('{carta1}', `<strong>${c1.nombre}</strong>`)
-          .replace('{carta2}', `<strong>${c2.nombre}</strong>`)
-          .replace('{card1}', `<strong>${c1.nombre}</strong>`)
-          .replace('{card2}', `<strong>${c2.nombre}</strong>`)
-          .replace('{desc1}', desc1)
-          .replace('{desc2}', desc2)
-      });
+    if (items.length === 1) {
+      const i = items[0];
+      mensajes = `${i.carta.nombre} aparece en "${i.pos.label}" trayendo ${i.sigShort}. `;
+    } else if (items.length === 2) {
+      mensajes = `Aparecen ${nombres[0]} y ${nombres[1]}. Una trae ${significados[0].toLowerCase()}. La otra, ${significados[1].toLowerCase()}. Juntas te dicen que esta etapa combina dos energías que tenés que integrar. `;
+    } else {
+      const listaNombres = nombres.slice(0, -1).join(', ') + ' y ' + nombres[nombres.length - 1];
+      mensajes = `Se presentan ${listaNombres}. `;
+      if (analisis.mayor >= 2) mensajes += `Con ${analisis.mayor} Arcanos Mayores presentes, el mensaje acá es de transformación profunda. `;
+      else if (analisis.mayor === 1) mensajes += `Un Arcano Mayor aparece para recordarte que hay una lección importante en juego. `;
+      mensajes += `Cada carta aporta una capa: ${significados.map((s, i) => `${nombres[i]} en "${items[i].pos.label}" señala ${s.toLowerCase()}`).join('; ')}. `;
     }
+
+    // Transición entre actos
+    const transiciones = [
+      'Esto es lo que estás trayendo a la mesa, el punto de partida de esta lectura.',
+      'Acá está el nudo de la cuestión, el corazón de tu consulta.',
+      'Este es el desenlace hacia donde apunta todo, el cierre de este capítulo.',
+      'Esta es la base sobre la que se construye todo lo demás.',
+      'Este bloque revela lo que está en movimiento ahora mismo.',
+      'Acá se perfila lo que viene si seguís este curso.'
+    ];
+
+    const intro = idx === 0 ? pickRandom(['Este es el arranque.', 'La lectura comienza acá.', 'Abriendo el telón.']) :
+                  idx === actos.length - 1 ? pickRandom(['Cerrando la lectura.', 'Hacia el desenlace.', 'El cierre de esta historia.']) :
+                  pickRandom(transiciones);
+
+    return `<div class="lectura-acto">
+      <span class="lectura-acto-titulo">${idx === 0 ? '🌅 Acto I — El origen' : idx === actos.length - 1 ? '🌇 Acto ' + (idx + 1) + ' — El desenlace' : '🌤️ Acto ' + (idx + 1) + ' — El desarrollo'}</span>
+      <p>${intro} ${mensajes}</p>
+    </div>`;
   }
 
-  // Resumen elemental si hay al menos 2 cartas
-  let textoElemental = '';
-  if (cantidad >= 2) {
-    const elem1 = getElemento(cartasEnMazo[cartasSeleccionadas[0]]);
-    const elem2 = getElemento(cartasEnMazo[cartasSeleccionadas[Math.min(1, cantidad - 1)]]);
-    const interElem = getInteraccionElemental(elem1.elem, elem2.elem);
-    if (interElem) {
-      textoElemental = `<div class="lectura-elemental">
-        <span class="lectura-elemental-title">⚡ Dinámica elemental</span>
-        <p>${interElem}</p>
-      </div>`;
+  // Actos HTML
+  let html = `<div class="lectura-combinada">`;
+  actos.forEach((acto, i) => { html += generarActo(acto, i); });
+
+  // Elemento dominante general
+  const todosPalos = todos.map(t => t.carta.palo);
+  const mayorCount = todosPalos.filter(p => p === 'mayor').length;
+  const menorCount = todosPalos.filter(p => p !== 'mayor').length;
+  const paloDominante = ['copas', 'espadas', 'bastos', 'oros']
+    .map(p => ({ palo: p, count: todosPalos.filter(x => x === p).length }))
+    .sort((a, b) => b.count - a.count)[0];
+
+  let fraseElemental = '';
+  if (paloDominante && paloDominante.count > 0) {
+    const paloInfo = PALOS[paloDominante.palo];
+    if (paloInfo) {
+      const elemFrases = {
+        copas: [
+          'El elemento Agua domina esta lectura. Las emociones, las relaciones y la intuición son el eje de lo que estás viviendo. No es casualidad — tu corazón está al mando ahora.',
+          'Hay mucha agua en esta tirada. Esto habla de sensibilidad, vínculos y mundo emocional. El llamado es a sentir, no a analizar.'
+        ],
+        espadas: [
+          'El Aire corta esta lectura. La mente, la comunicación y la verdad son protagonistas. Te están pidiendo que pienses con claridad antes de actuar.',
+          'Predominan las Espadas — el elemento Aire. Estás en un momento donde la razón pelea por hacerse escuchar. Buscá la verdad, incluso si duele.'
+        ],
+        bastos: [
+          'El Fuego cruza toda esta tirada. Acción, pasión, creación. No es momento de quedarse quieto — hay que moverse, arriesgar, encender.',
+          'Los Bastos dominan — pura energía de Fuego. Esto es impulso, ganas de hacer, de crear. El universo te dice: largate.'
+        ],
+        oros: [
+          'La Tierra es el piso de esta lectura. Lo material, el trabajo, la salud, lo concreto. Acá se construye sobre bases sólidas.',
+          'Los Oros mandan — elemento Tierra. Esto habla de proyectos, finanzas, de lo tangible. Todo lo que vale la pena lleva tiempo y esfuerzo.'
+        ]
+      };
+      const frases = elemFrases[paloDominante.palo];
+      if (frases) fraseElemental = pickRandom(frases);
     }
   }
 
   // Frase de cierre
-  let cierreKey = 'many';
-  if (cantidad === 1) cierreKey = 1;
-  else if (cantidad === 2) cierreKey = 2;
-  else if (cantidad === 3) cierreKey = 3;
-  else cierreKey = 'muchas';
-  const cierre = pickRandom(CIERRES[cierreKey]);
-
-  // Armar HTML final
-  let html = `<div class="lectura-combinada">`;
-
-  // Conexiones
-  if (conexiones.length > 0) {
-    html += `<h4 class="lectura-conexiones-title">🔗 Cómo se conectan las posiciones</h4>`;
-    conexiones.forEach(c => {
-      html += `<div class="lectura-conexion">
-        <span class="lectura-conexion-par">${c.pares}</span>
-        <p>${c.texto}</p>
-      </div>`;
-    });
+  let cierre = '';
+  if (mayorCount > menorCount) {
+    cierre = 'Esta lectura está cargada de Arcanos Mayores, lo que indica un momento de gran transformación en tu vida. Las lecciones que vienen son grandes — no las esquives.';
+  } else if (menorCount > mayorCount * 2) {
+    cierre = 'Hay muchos Arcanos Menores acá. Esto habla del día a día, de las pequeñas batallas que construyen tu presente. No busques grandes gestos — prestá atención a lo cotidiano.';
+  } else {
+    cierre = 'Una mezcla equilibrada de Arcanos Mayores y Menores. Hay lecciones profundas en medio de lo cotidiano — el tarot te dice que los cambios grandes también se construyen con pasos pequeños.';
   }
 
-  // Interpretación elemental
-  if (textoElemental) html += textoElemental;
+  if (fraseElemental) {
+    html += `<div class="lectura-elemental">
+      <span class="lectura-elemental-title">⚡ Patrón elemental</span>
+      <p>${fraseElemental}</p>
+    </div>`;
+  }
 
-  // Consejo final
   html += `<div class="lectura-consejo-final">
-    <span class="lectura-consejo-title">💫 Mensaje final</span>
+    <span class="lectura-consejo-title">💫 Síntesis</span>
     <p>${cierre}</p>
   </div>`;
 
   html += `</div>`;
-
   return html;
 }
 
@@ -1202,6 +1172,8 @@ function seguirTirando() {
     if (!cartasSeleccionadas.includes(idx)) disponibles.push(idx);
   });
   if (disponibles.length === 0) {
+    const extraSlot = document.getElementById('spread-extra-slot');
+    if (extraSlot) extraSlot.style.display = 'none';
     showToast('No quedan más cartas disponibles');
     return;
   }
